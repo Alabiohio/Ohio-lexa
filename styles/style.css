@@ -1,0 +1,252 @@
+body {
+  background-color: #111;
+  color: #fff
+}
+/* Chat container */
+.chatbot-container {
+  height:100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: inherit;
+}
+
+.chat-window {
+  background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 75vh;
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 10;
+  background-clor: #111;
+  border-bottom: 1px solid limegreen;
+  border-radius: 0 0 40px 40px;
+}
+#grdX {
+  border-radius: 0 0 40px 40px;
+  background-color: #111;
+}
+
+.chat-header {
+  background: #111;
+  color: #fff;
+  padding: 12px;
+  text-align: center;
+  border-radius: 0 0 40px 40px;
+}
+.chat-header span {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #fff
+}
+.setDiv {
+  padding: 8px;
+}
+
+
+main {
+  margin-top: 3rem;
+}
+/* Chat body */
+.chat-body {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background: inherit;
+  display: flex;
+  flex-direction: column;
+}
+.hideIntroBox {
+  display: none;
+}
+/* Messages */
+.message {
+  max-width: 75%;
+  padding: 10px 14px;
+  margin: 6px 0;
+  border-radius: 20px;
+  word-wrap: break-word;
+}
+
+.user-msg {
+  align-self: flex-end;
+  background: darkgreen;
+  color: #fff;
+  border-bottom-right-radius: 5px;
+}
+
+.bot-msg {
+  align-self: flex-start;
+  background: #444;
+  color: #fff;
+  border-bottom-left-radius: 5px;
+}
+
+/* Typing indicator (3 dots) */
+.typing {
+  display: flex;
+  gap: 4px;
+  padding: 10px;
+  width: fit-content;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: lightgrey;
+  border-radius: 50%;
+  animation: blink 1.4s infinite both;
+}
+
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0%, 80%, 100% { opacity: 0; }
+  40% { opacity: 1; }
+}
+#userInput {
+  border-radius: 2rem;
+  background-color: transparent;
+  box-shadow: 0 0 5px green;
+  border: none;
+  color: #fff;
+}
+#userInput:focus {
+  box-shadow: 0 0 5px green;
+  border: none;
+}
+.btnI {
+  border-radius: 50%;
+  background-color: green;
+}
+.btnI:hover {
+  background-color: darkgreen;
+}
+.btnII {
+  border-radius: 50%;
+  background-color: transparent;
+  font-size: 2rem;
+  color: green;
+  padding: 8px;
+}
+
+/* Footer */
+
+.chat-footer {
+  border-top: 1px solid limegreen; /* #e6e6e6;*/
+  background: #111;
+  border-radius: 4rem;
+  padding: 0.8rem;
+}
+
+.tools { 
+  display: flex;
+  gap: 10px; 
+  margin-top: 5px;
+}
+.tools button {
+  padding: 8px;
+  color: #fff;
+}
+.tools button:hover {
+  background-color: grey;
+  border-radius: 50%
+}
+
+.msg-rec {
+  display: flex;
+  gap:5px
+}
+
+.preview { 
+  max-width:120px; 
+  background: inherit;
+  border-radius: 1.5rem;
+  padding: 0.3rem;
+}
+
+
+  .menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100vh;
+      background-color: #333;
+      color: white;
+      transform: translateX(-100%); /* Hidden off-screen initially */
+      transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Smooth slide-in effect */
+    }
+
+    .menu.show {
+      transform: translateX(0); /* Slide into view */
+    }
+
+    .menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu ul li {
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .menu ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .menu-toggle {
+      background-color: transparent;
+      color: white;
+      border: none;
+      font-size: 1.5rem;
+      padding: 12px;
+      cursor: pointer;
+    }
+
+#clrBtn {
+  border-radius: 20px;
+}
+.ai-effect {
+  font-size: 3rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff00ff, #00ffff, #ff9900);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 6s infinite linear, glowPulse 2s infinite ease-in-out;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 15px #0ff, 0 0 30px #0ff; }
+  50% { text-shadow: 0 0 25px #f0f, 0 0 45px #ff0; }
+}
+
+
+.record-indicator {
+  color: red;
+  font-weight: bold;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0.5; }
+}
