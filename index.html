@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lexa</title>
+  
+  <!-- Foundation 6 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  
+  <header class="grid-container">
+    <div class="grid-x grid-margin-x" id="grdX">
+                       
+       <div class="cell small-9 medium-9 large-9 chat-header text-left align-left">
+          <span>LEXA</span>
+        </div>
+        <div class="cell small-1 medium-1 large-1 setDiv text-center">
+                  <button class="menu-toggle" aria-label="Menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+                </div>
+    </div>      
+    
+     <div class="grid-x grid-margin-x align-center-middle text-center menu">
+        <ul>
+          <nav>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </nav>
+          <li>
+            <button class="button alert" id="clrBtn"><i class="fas fa-trash"></i> Clear chat history</button>
+          </li>
+       </ul>
+  </div>    
+  </header>
+  
+    
+  
+  <main>
+  <div class="grid-container full chatbot-container">
+      <div class="grid-x cell chat-window">
+
+           <div class="cell align-center-middle text-center introBox" style="margin-top: 15%;">
+  <h1 class="ai-effect">Ohio Lexa</h1>
+</div>
+
+      
+        <!-- Chat Messages -->
+        <div id="chatbox" class="cell chat-body"></div>
+        
+        
+                        <div class="grid-x chat-footer">
+          <div class="cell">
+            <input type="file" id="imageInput" accept="image/*" style="display:none;">
+          </div>
+          
+          <div class="cell small-1 medium-1 large-1 align-center-middle text-center" style="margin-right: 25px">
+            <button class="button btnI" onclick="document.getElementById('imageInput').click()"><i class="fas fa-image"></i></button>
+          </div>
+          
+          <div class="cell small-7 medium-7 large-7 align-center-middle text-center" style="margin-right: 25px;">
+            <input type="text" id="userInput" placeholder="Ask anything..." />
+            </div>
+          
+          <div class="cell small-2 medium-3 large-3 msg-rec align-center-middle text-center">
+            <button class="button btnI" onclick="sendMessage()"><i class="fas fa-arrow-up"></i></button>                  
+            <button class="button btnI" onclick="startRecording()"><i class="fas fa-microphone"></i></button>
+<div id="recordIndicator" class="record-indicator" style="display:none;">
+  🎙 Listening...
+</div>            
+          </div>        
+        </div>        
+        
+      </div> 
+      </div>
+    
+      
+    
+    
+    
+  
+  
+  </main>
+  
+  <!--
+  <footer class="grid-container">
+    <div class="grid-x text-center">
+      <div class="cell text-center">
+        <p class="footer-credit">
+          &copy; <span id="year"></span> Ohio Codespace. All rights reserved.
+        </p>
+      </div>
+    </div> 
+  </footer>
+  -->
+  
+  							<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/foundation-sites/dist/js/foundation.min.js"></script>
+    <script>
+        $(document).foundation();
+    </script>
+  
+  <script src="scripts/chat4.js"></script>
+  <script>
+ /* function getYear() {
+    document.getElementById("year").textContent = new Date().getFullYear();
+}
+  getYear();*/
+  </script>
+</body>
+</html>
