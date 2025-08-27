@@ -1,6 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Lemon&family=Nova+Round&family=Signika:wght@300..700&family=Texturina:ital,opsz,wght@0,12..72,100..900;1,12..72,100..900&display=swap');
+ 
+:root {
+  --font-familyIV: "Lemon", serif;
+}
+
 body {
   background-color: #111;
   color: #fff
+}
+.hides {
+  display: none;
 }
 /* Chat container */
 .chatbot-container {
@@ -42,8 +51,10 @@ header {
 }
 .chat-header span {
   font-weight: 700;
-  font-size: 1.5rem;
-  color: #fff
+  font-size: 1.8rem;
+  color: #fff;
+  font-family: var(--font-familyIV);
+  letter-spacing: 5px;
 }
 .setDiv {
   padding: 8px;
@@ -62,6 +73,11 @@ main {
   display: flex;
   flex-direction: column;
 }
+
+.introBox {
+  margin-top: 15%;
+}
+
 .hideIntroBox {
   display: none;
 }
@@ -179,12 +195,17 @@ main {
       left: 0;
       width: 250px;
       height: 100vh;
-      background-color: #333;
+      background-color: #222;
       color: white;
       transform: translateX(-100%); /* Hidden off-screen initially */
       transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Smooth slide-in effect */
     }
-
+.lgLnk {
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
     .menu.show {
       transform: translateX(0); /* Slide into view */
     }
@@ -204,6 +225,7 @@ main {
       color: white;
       text-decoration: none;
       font-size: 18px;
+      font-weight: 600
     }
 
     .menu-toggle {
@@ -214,13 +236,23 @@ main {
       padding: 12px;
       cursor: pointer;
     }
-
+.menuFt {
+  position: absolute;
+  top: 75%;
+  padding: 0.8rem;
+  left: 0
+}
+.menuFt p {
+  font-weight: 300;
+  font-size: 0.85rem;
+}
 #clrBtn {
   border-radius: 20px;
 }
 .ai-effect {
-  font-size: 3rem;
+  font-size: 2.8rem;
   font-weight: bold;
+  font-family: var(--font-familyIV);
   background: linear-gradient(90deg, #ff00ff, #00ffff, #ff9900);
   background-size: 300% 300%;
   -webkit-background-clip: text;
@@ -250,3 +282,24 @@ main {
 @keyframes blink {
   50% { opacity: 0.5; }
 }
+
+footer {
+  padding: 0.5rem;
+}
+footer p {
+  font-weight: 300;
+  font-size: 0.85rem;
+}
+footer p a {
+  font-weight: 500;
+  color: #fff;
+  text-decoration: underline;
+}
+
+@media (orientation: landscape) {
+  .introBox {
+    margin-top: 10%;
+  }
+}
+
+
