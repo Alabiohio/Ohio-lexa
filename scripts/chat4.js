@@ -101,7 +101,7 @@ function appendMessage(sender, text, isBot=false) {
   const chatbox = document.getElementById("chatbox");
   const msgDiv = document.createElement("div");
   msgDiv.classList.add("message", sender === "user" ? "user-msg" : "bot-msg");
-  msgDiv.innerHTML = `<p>${text}</p>`;
+  msgDiv.innerHTML = `<p>${marked.parse(text)}</p>`;
 
   if (isBot) {
     const tools = document.createElement("div");
