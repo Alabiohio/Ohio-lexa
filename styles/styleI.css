@@ -66,11 +66,15 @@ p {
     #about-lexa {
       padding: 3rem 1rem;      
     }
-
-    #about-lexa h2 {
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
+.lgHII {
+  display: flex;
+  gap: 0.8rem;
+}
+#about-lexa h2 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+}
 
     #about-lexa h2 span {
       color: limegreen;

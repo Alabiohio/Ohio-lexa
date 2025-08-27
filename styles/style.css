@@ -75,7 +75,9 @@ main {
 }
 
 .introBox {
-  margin-top: 15%;
+  position: absolute;
+  z-index: 1;
+  top: 39%;
 }
 
 .hideIntroBox {
@@ -99,9 +101,10 @@ main {
 
 .bot-msg {
   align-self: flex-start;
-  background: #444;
+  background: #222;
   color: #fff;
   border-bottom-left-radius: 5px;
+  max-width: 100%;
 }
 
 /* Typing indicator (3 dots) */
@@ -127,6 +130,89 @@ main {
   0%, 80%, 100% { opacity: 0; }
   40% { opacity: 1; }
 }
+
+/* Chat container */
+#chatBox {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Bot messages */
+.message.bot {
+  background: #f8f9fa;
+  color: #333;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin: 8px 0;
+  max-width: 80%;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* User messages */
+.message.user {
+  background: #007bff;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin: 8px 0;
+  max-width: 80%;
+  align-self: flex-end;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Markdown formatting */
+.message.bot strong {
+  font-weight: 800;
+  color: #222;
+  font-size: 1.2rem;
+}
+
+.message.bot em {
+  font-style: italic;
+  color: #555;
+}
+
+.message.bot ul,
+.message.bot ol {
+  margin: 8px 0 8px 18px;
+  padding: 0;
+}
+
+.message.bot li {
+  margin: 4px 0;
+}
+
+.message.bot a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.message.bot a:hover {
+  text-decoration: underline;
+}
+
+.message.bot code {
+  background: #eee;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: "Consolas", monospace;
+  font-size: 14px;
+}
+
+.message.bot pre {
+  background: #272822;
+  color: #111;
+  padding: 10px;
+  border-radius: 6px;
+  overflow-x: auto;
+  margin: 8px 0;
+}
+
+
+
 #userInput {
   border-radius: 2rem;
   background-color: transparent;
@@ -296,10 +382,6 @@ footer p a {
   text-decoration: underline;
 }
 
-@media (orientation: landscape) {
-  .introBox {
-    margin-top: 10%;
-  }
-}
+
 
 
