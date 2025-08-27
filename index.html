@@ -2,16 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lexa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Lexa — AI Chat Assistant</title>
+  <meta name="description" content="Chat naturally with Lexa. Send images and voice prompts, copy responses, and manage your chat history securely on your device.">
   
-  <!-- Foundation 6 CSS -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ohio-lexa.vercel.app/">
+  <meta property="og:title" content="Lexa — Your AI Chat Assistant">
+  <meta property="og:description" content="Chat naturally with Lexa. Send images and voice prompts, copy or listen to responses, and manage your chat history securely on your device.">
+  <meta property="og:image" content="https://ohio-lexa.vercel.app/assets/imgs/logo-bg.png">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://ohio-lexa.vercel.app/">
+  <meta name="twitter:title" content="Lexa — Your AI Chat Assistant">
+  <meta name="twitter:description" content="Chat naturally with Lexa. Send images and voice prompts, copy or listen to responses, and manage your chat history securely on your device.">
+  <meta name="twitter:image" content="https://ohio-lexa.vercel.app/assets/imgs/logo-bg.png">
+  
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/drawable/ic-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/drawable/ic-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/drawable/ic-180.png">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-  
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="styles/style.css">
+  
 </head>
 <body>
   
@@ -26,17 +44,35 @@
                 </div>
     </div>      
     
-     <div class="grid-x grid-margin-x align-center-middle text-center menu">
+     <div class="grid-x grid-margin-x align-center-middle text-center menu">       
+       
+       <div class="cell lgLnk">  
+         <a href="index.html">
+            <img src="assets/imgs/logo.png" style="height: 35px; width: 35px; border-radius: 20px;">
+         </a>       
+       </div>
+
+       
         <ul>
           <nav>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Terms of Use</a></li>
-            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="about.html">About Lexa</a></li>
+            <li><a href="terms.html">Terms of Use</a></li>
+            <li><a href="policy.html">Privacy Policy</a></li>
           </nav>
           <li>
             <button class="button alert" id="clrBtn"><i class="fas fa-trash"></i> Clear chat history</button>
           </li>
        </ul>
+       
+      <div class="cell text-center menuFt">
+             <a href="https://ohiocodespace.vercel.app" target="_blank" rel="noopener noreferrer">
+           <img src="assets/imgs/ohio.png" style="height: 60px; width: 60px">
+         </a>
+        <p>
+          &copy; <span id="year"></span> Ohio Codespace. All rights reserved.
+        </p>
+      </div>
+       
   </div>    
   </header>
   
@@ -45,10 +81,10 @@
   <main>
   <div class="grid-container full chatbot-container">
       <div class="grid-x cell chat-window">
-
-           <div class="cell align-center-middle text-center introBox" style="margin-top: 15%;">
-  <h1 class="ai-effect">Ohio Lexa</h1>
-</div>
+        
+           <div class="cell align-center-middle text-center introBox">
+             <h1 class="ai-effect">Ohio Lexa</h1>             
+           </div>
 
       
         <!-- Chat Messages -->
@@ -64,41 +100,33 @@
             <button class="button btnI" onclick="document.getElementById('imageInput').click()"><i class="fas fa-image"></i></button>
           </div>
           
-          <div class="cell small-7 medium-7 large-7 align-center-middle text-center" style="margin-right: 25px;">
+          <div class="cell small-7 medium-7 large-7 align-center-middle text-center" id="userInputBox" style="margin-right: 25px;">
             <input type="text" id="userInput" placeholder="Ask anything..." />
             </div>
+                          <div class="cell small-7 medium-7 large-7 align-center-middle text-center record-indicator" id="recordIndicator" style="display:none;">Listening...</div>
           
           <div class="cell small-2 medium-3 large-3 msg-rec align-center-middle text-center">
-            <button class="button btnI" onclick="sendMessage()"><i class="fas fa-arrow-up"></i></button>                  
-            <button class="button btnI" onclick="startRecording()"><i class="fas fa-microphone"></i></button>
-<div id="recordIndicator" class="record-indicator" style="display:none;">
-  🎙 Listening...
-</div>            
+            <button class="button btnI" onclick="sendMessage()"><i class="fas fa-arrow-up"></i></button>
+            <span id="rcdSpan">
+              <button class="button btnI" onclick="startRecording()"><i class="fas fa-microphone"></i></button>
+            </span>            
+                        
           </div>        
         </div>        
         
       </div> 
       </div>
-    
       
-    
-    
-    
-  
-  
   </main>
   
-  <!--
-  <footer class="grid-container">
-    <div class="grid-x text-center">
-      <div class="cell text-center">
-        <p class="footer-credit">
-          &copy; <span id="year"></span> Ohio Codespace. All rights reserved.
-        </p>
+  <footer class="grid-container align-center-middle">
+    <div class="grid-x grid-margin-x text-center">
+      <div class="cell">
+        <p>By messaging Lexa, you agree to our <a href="terms.html">Terms</a> and have read our <a href="policy.html">Privacy Policy</a>.</p>
       </div>
-    </div> 
+    </div>
   </footer>
-  -->
+  
   
   							<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/foundation-sites/dist/js/foundation.min.js"></script>
@@ -107,11 +135,13 @@
     </script>
   
   <script src="scripts/chat4.js"></script>
+    <script src="scripts/analytics.js"></script>
+
   <script>
- /* function getYear() {
+  function getYear() {
     document.getElementById("year").textContent = new Date().getFullYear();
 }
-  getYear();*/
+  getYear();
   </script>
 </body>
 </html>

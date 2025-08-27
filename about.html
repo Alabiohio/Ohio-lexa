@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>About Lexa</title>
+  <meta name="description" content="Discover Lexa, the AI chat assistant created by Ohio Codespace. Learn its features, vision, and how it helps you chat smarter.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ohio-lexa.vercel.app/about.html">
+  <meta property="og:title" content="About Lexa | Ohio Codespace">
+  <meta property="og:description" content="Discover Lexa, the AI chat assistant created by Ohio Codespace. Learn its features, vision, and how it helps you chat smarter.">
+  <meta property="og:image" content="https://ohio-lexa.vercel.app/assets/imgs/logo-bg.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://ohio-lexa.vercel.app/about.html">
+  <meta name="twitter:title" content="About Lexa | Ohio Codespace">
+  <meta name="twitter:description" content="Discover Lexa, the AI chat assistant created by Ohio Codespace. Learn its features, vision, and how it helps you chat smarter.">
+  <meta name="twitter:image" content="https://ohio-lexa.vercel.app/assets/imgs/logo-bg.png">
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/drawable/ic-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/drawable/ic-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/drawable/ic-180.png">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
+  <link rel="stylesheet" href="styles/styleI.css">
+  
+</head>
+<body>
+
+  <header class="tos-header">
+    <h1>Ohio Lexa</h1>
+    
+    <div class="top-bar">
+        <div class="top-bar-left">
+          <nav>
+            <ul class="dropdown menu align-center-middle text-center" data-dropdown-menu>         
+                <li><a href="index.html">Lexa</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+                <li><a href="policy.html">Privacy Policy</a></li>                 
+            </ul>
+          </nav>            
+        </div>
+    </div>
+    
+  </header>
+  
+  <!-- About Section -->
+  <section id="about-lexa" class="grid-container fluid">
+    <div class="grid-x grid-margin-x align-center">
+
+      <!-- Left Column: Text -->
+      <div class="cell small-12 medium-6">
+        <h2>🤖 Meet <span>Lexa</span></h2>
+        <p>
+          <strong>Lexa</strong> is an AI-powered chatbot created by <strong>Ohio Codespace</strong>.  
+          Designed to assist, chat, and simplify tasks, Lexa combines speed, intelligence,  
+          and user-friendly interaction in one place.
+        </p>
+        <p>
+          Built on <strong>Google’s Gemini 2.0 Flash</strong>, Lexa delivers fast and reliable responses.  
+          Whether you type, speak, or send images, Lexa adapts to your way of chatting.
+        </p>
+      </div>
+
+      <!-- Right Column: Features -->
+      <div class="cell small-12 medium-6">
+        <div class="callout radius">
+          <h4>✨ Key Features</h4>
+          <ul>
+            <li>Send Images as Prompts</li>
+            <li>Use Voice Messages as Prompts</li>
+            <li>Copy & Read Aloud Responses</li>
+            <li>Powered by Gemini 2.0 Flash</li>
+            <li>Privacy First: Chat stored locally</li>
+            <li>Image Generation not supported (yet)</li>
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+
+ <footer class="grid-container footer">
+    <div class="grid-x text-center">
+      <div class="cell text-center">
+        <p class="footer-credit">
+          &copy; <span id="year"></span> Ohio Codespace. All rights reserved.
+        </p>
+      </div>
+    </div> 
+  </footer>
+  
+    	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/foundation-sites/dist/js/foundation.min.js"></script>
+    <script>
+        $(document).foundation();
+  
+    function getYear() {
+      document.getElementById("year").textContent = new Date().getFullYear();
+    }
+  getYear();
+    </script>
+     <script src="scripts/analytics.js"></script>
+
+    
+  </body>
+</html>
