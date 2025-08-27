@@ -13,7 +13,7 @@ body {
 }
 /* Chat container */
 .chatbot-container {
-  height:100vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,7 +24,7 @@ body {
   background-color: inherit;
   display: flex;
   flex-direction: column;
-  height: 75vh;
+  height: 100vh;
 }
 
 /* Header */
@@ -61,9 +61,6 @@ header {
 }
 
 
-main {
-  margin-top: 3rem;
-}
 /* Chat body */
 .chat-body {
   flex: 1;
@@ -72,6 +69,7 @@ main {
   background: inherit;
   display: flex;
   flex-direction: column;
+  margin-top: 4rem;
 }
 
 .introBox {
@@ -371,6 +369,7 @@ main {
 
 footer {
   padding: 0.5rem;
+  background: #111;
 }
 footer p {
   font-weight: 300;
