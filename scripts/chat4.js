@@ -141,7 +141,7 @@ let indicator = document.getElementById("recordIndicator");
 
 function startRecording() {
   if (!("webkitSpeechRecognition" in window)) {
-    alert("Speech recognition not supported!");
+    alert("Speech recognition not supported in this browser!");
     return;
   }
 
@@ -166,13 +166,24 @@ function startRecording() {
     sendMessage();
   };
 
+  recognition.onerror = function (event) {
+    console.warn("Speech recognition error:", event.error);
+
+    if (event.error === "not-allowed" || event.error === "service-not-allowed") {
+      alert("Microphone access is blocked. Please allow microphone permission in your browser settings.");
+    } else if (event.error === "network") {
+      alert("Network error. Please check your connection.");
+    } else if (event.error === "no-speech") {
+      alert("No speech detected. Try again.");
+    }
+
+    resetRecordingUI();
+  };
+
   recognition.onend = function () {
-    indicator.style.display = "none";
-    inputBox.classList.remove("hides");
-    recordSpan.innerHTML = `
-      <button class="button btnI" onclick="startRecording()">
-        <i class="fas fa-microphone"></i>
-      </button>`;
+    if (!cancelled) {
+      resetRecordingUI();
+    }
   };
 }
 
@@ -181,6 +192,10 @@ function stopRecording() {
     cancelled = true; // mark as cancelled
     recognition.stop(); 
   }
+  resetRecordingUI();
+}
+
+function resetRecordingUI() {
   indicator.style.display = "none";
   inputBox.classList.remove("hides");
   recordSpan.innerHTML = `
