@@ -2,6 +2,8 @@ const API_KEY = "AIzaSyDWnyPqVNNhHd7Q2HElWqhUiUuShs0hwDs";
 const model = "gemini-2.0-flash";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=` + API_KEY;
 const introBox = document.querySelector(".introBox");
+const inputBox = document.getElementById("userInputBox");
+const recordSpan = document.getElementById("rcdSpan");
 
 let pendingImage = null;
 let pendingPreview = null;
@@ -106,7 +108,6 @@ function appendMessage(sender, text, isBot=false) {
     tools.className = "tools";
     tools.innerHTML = `
       <button onclick="copyText(\`${text.replace(/`/g,"\\`")}\`)"><i class="fas fa-copy"></i></button>
-      <button onclick="speakText(\`${text.replace(/`/g,"\\`")}\`)"><i class="fas fa-volume-up"></i></button>
     `;
     msgDiv.appendChild(tools);
   }
@@ -134,74 +135,68 @@ function removeTyping(typingDiv) {
 }
 
 // Voice input
+let recognition;       // global speech recognizer
+let cancelled = false; // track if cancelled
+let indicator = document.getElementById("recordIndicator");
+
 function startRecording() {
   if (!("webkitSpeechRecognition" in window)) {
     alert("Speech recognition not supported!");
     return;
   }
-  const recognition = new webkitSpeechRecognition();
+
+  cancelled = false; // reset flag
+
+  recognition = new webkitSpeechRecognition();
   recognition.lang = "en-US";
 
-  const indicator = document.getElementById("recordIndicator");
-  indicator.style.display = "block"; // show indicator
+  indicator.style.display = "block";
+  inputBox.classList.add("hides");
+  recordSpan.innerHTML = `
+    <button class="button btnI" onclick="stopRecording()">
+      <i class="fas fa-close"></i>
+    </button>`;
 
   recognition.start();
 
   recognition.onresult = function (e) {
+    if (cancelled) return; // do nothing if user canceled
     const transcript = e.results[0][0].transcript;
     document.getElementById("userInput").value = transcript;
     sendMessage();
   };
 
   recognition.onend = function () {
-    indicator.style.display = "none"; // hide when done
+    indicator.style.display = "none";
+    inputBox.classList.remove("hides");
+    recordSpan.innerHTML = `
+      <button class="button btnI" onclick="startRecording()">
+        <i class="fas fa-microphone"></i>
+      </button>`;
   };
 }
+
+function stopRecording() {
+  if (recognition) {
+    cancelled = true; // mark as cancelled
+    recognition.stop(); 
+  }
+  indicator.style.display = "none";
+  inputBox.classList.remove("hides");
+  recordSpan.innerHTML = `
+    <button class="button btnI" onclick="startRecording()">
+      <i class="fas fa-microphone"></i>
+    </button>`;
+}
+
 
 // Copy bot text
 function copyText(text) {
   navigator.clipboard.writeText(text);
-  alert("Copied!");
+  //alert("Copied!");
 }
 
 // Speak bot text
-let currentUtterance = null;
-let isPaused = false;
-
-function speakText(text) {
-  if (speechSynthesis.speaking && !speechSynthesis.paused) {
-    // already speaking → pause
-    speechSynthesis.pause();
-    isPaused = true;
-    updateSpeakButtons("▶");
-    return;
-  }
-  if (speechSynthesis.paused) {
-    // resume
-    speechSynthesis.resume();
-    isPaused = false;
-    updateSpeakButtons("⏸");
-    return;
-  }
-
-  function updateSpeakButtons(label) {
-  document.querySelectorAll(".tools button:last-child").forEach(btn => {
-    btn.textContent = label;
-  });
-}
-  
-  // start new
-  currentUtterance = new SpeechSynthesisUtterance(text);
-  speechSynthesis.speak(currentUtterance);
-  isPaused = false;
-  updateSpeakButtons("⏸ Pause");
-
-  currentUtterance.onend = () => {
-    updateSpeakButtons("🔊 Read");
-  };
-}
-
-
 
 function removePendingImage() {
   pendingImage = null;
