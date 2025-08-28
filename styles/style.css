@@ -28,7 +28,7 @@ body {
 }
 
 /* Header */
-header {
+.header {
   position: fixed;
   top: 0;
   width: 100vw;
@@ -99,7 +99,7 @@ header {
 
 .bot-msg {
   align-self: flex-start;
-  background: #222;
+  background: #111;
   color: #fff;
   border-bottom-left-radius: 5px;
   max-width: 100%;
@@ -162,54 +162,72 @@ header {
 }
 
 /* Markdown formatting */
-.message.bot strong {
+.bot-msg strong {
   font-weight: 800;
-  color: #222;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
-.message.bot em {
+.bot-msg em {
   font-style: italic;
-  color: #555;
 }
 
-.message.bot ul,
-.message.bot ol {
+.bot-msg ul,
+.bot-msg ol {
   margin: 8px 0 8px 18px;
   padding: 0;
 }
 
-.message.bot li {
+.bot-msg li {
   margin: 4px 0;
 }
 
-.message.bot a {
+.bot-msg a {
   color: #007bff;
   text-decoration: none;
 }
 
-.message.bot a:hover {
+.bot-msg a:hover {
   text-decoration: underline;
 }
 
-.message.bot code {
-  background: #eee;
+.bot-msg code {
+  background: #111;
   padding: 2px 6px;
-  border-radius: 4px;
+  border: none;
   font-family: "Consolas", monospace;
   font-size: 14px;
+  color: limegreen
 }
 
-.message.bot pre {
+.bot-msg pre {
   background: #272822;
-  color: #111;
   padding: 10px;
-  border-radius: 6px;
+  border: none;
   overflow-x: auto;
   margin: 8px 0;
+  color: #fff
 }
 
-
+.bot-msg td, .bot-msg tr {
+  background-color: #111
+}
+.bot-msg thead {
+  color: #fff
+}
+.bot-msg h1 {
+  font-weight: 800;
+  font-size: 2rem;
+}
+.bot-msg h2 {
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+.bot-msg h3 {
+  font-weight: 600;
+}
+.bot-msg h4 {
+  font-weight: 500;
+}
 
 #userInput {
   border-radius: 2rem;
@@ -380,6 +398,7 @@ footer p a {
   color: #fff;
   text-decoration: underline;
 }
+
 
 
 
