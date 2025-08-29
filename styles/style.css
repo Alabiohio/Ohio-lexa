@@ -6,7 +6,8 @@
 
 body {
   background-color: #111;
-  color: #fff
+  color: #fff;
+  overflow-y: hidden;
 }
 .hides {
   display: none;
@@ -24,7 +25,7 @@ body {
   background-color: inherit;
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  height: 100vh;
 }
 
 /* Header */
@@ -137,29 +138,6 @@ body {
 }
 
 /* Bot messages */
-.message.bot {
-  background: #f8f9fa;
-  color: #333;
-  border-radius: 10px;
-  padding: 10px 14px;
-  margin: 8px 0;
-  max-width: 80%;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-/* User messages */
-.message.user {
-  background: #007bff;
-  color: #fff;
-  border-radius: 10px;
-  padding: 10px 14px;
-  margin: 8px 0;
-  max-width: 80%;
-  align-self: flex-end;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
 
 /* Markdown formatting */
 .bot-msg strong {
@@ -214,6 +192,37 @@ body {
 .bot-msg thead {
   color: #fff
 }
+
+/* Make tables scrollable inside bot messages */
+.bot-msg table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+/* Wrap tables in a scrollable container */
+.bot-msg table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-radius: 20px
+}
+
+/* Table styling (like ChatGPT) */
+.bot-msg th, 
+.bot-msg td {
+  border: 1px solid #e5e7eb;
+  padding: 6px 10px;
+  text-align: left;
+}
+
+.bot-msg th {
+  background: rgba(10%, 80%, 30%, 0.12);
+  font-weight: 700;
+}
+
 .bot-msg h1 {
   font-weight: 800;
   font-size: 2rem;
@@ -228,6 +237,24 @@ body {
 .bot-msg h4 {
   font-weight: 500;
 }
+
+/* Prevent KaTeX from breaking layout */
+.bot-msg .katex-display {
+  overflow-x: auto;     /* scroll if too wide */
+  overflow-y: hidden;
+  max-width: 100%;      /* fit inside bubble */
+  padding-bottom: 4px;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+}
+
+/* Keep inline math clean */
+.bot-msg .katex {
+  white-space: normal;  /* allow wrapping */
+  word-break: break-word;
+}
+
 
 #userInput {
   border-radius: 2rem;
