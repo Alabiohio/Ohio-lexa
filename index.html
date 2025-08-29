@@ -29,10 +29,11 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="styles/style.css">
-  <!--
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
--->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  
+  <!-- KaTeX CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  
 </head>
 <body>
   
@@ -95,10 +96,9 @@
 
       
         <!-- Chat Messages -->
-        <div id="chatbox" class="cell chat-body"></div>
+        <div id="chatbox" class="cell chat-body"></div>     
         
-        
-                        <div class="grid-x chat-footer">
+        <div class="grid-x chat-footer">         
           <div class="cell">
             <input type="file" id="imageInput" accept="image/*" style="display:none;">
           </div>
@@ -109,24 +109,26 @@
           
           <div class="cell small-7 medium-7 large-7 align-center-middle text-center" id="userInputBox" style="margin-right: 25px;">
             <textarea id="userInput" placeholder="Ask anything..."></textarea>
-            </div>
+            </div>     
                           <div class="cell small-7 medium-7 large-7 align-center-middle text-center record-indicator" id="recordIndicator" style="display:none;">Listening...</div>
           
           <div class="cell small-2 medium-3 large-3 msg-rec align-center-middle text-center">
             <button class="button btnI" onclick="sendMessage()"><i class="fas fa-arrow-up"></i></button>
             <span id="rcdSpan">
               <button class="button btnI" onclick="startRecording()"><i class="fas fa-microphone"></i></button>
-            </span>            
-                        
-          </div>        
+            </span>                                    
+          </div>          
         </div>        
         
-      </div> 
+      <div class="cell text-center">
+        <p>Powered by <strong>Google LLC</strong></p>
       </div>
-      
+        
+      </div> 
+      </div>      
   </main>
   
-  
+  <!--
   <footer class="grid-container align-center-middle">
     <div class="grid-x grid-margin-x text-center">
       <div class="cell">
@@ -134,7 +136,7 @@
   </div>
     </div>
   </footer>
-  
+  -->
   
   							<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/foundation-sites/dist/js/foundation.min.js"></script>
@@ -145,14 +147,17 @@
   <script src="scripts/chat4.js"></script>
     <script type="module" src="scripts/analytics.js"></script>
 
-  <!--
-      <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
-    
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
-   -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    hljs.highlightAll();
+  });
+</script>
+  <!-- KaTeX JS -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body);"></script>
+  
   <script>
   function getYear() {
     document.getElementById("year").textContent = new Date().getFullYear();
