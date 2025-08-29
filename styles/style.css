@@ -255,6 +255,55 @@ body {
   word-break: break-word;
 }
 
+/* Code block container */
+.code-block {
+  position: relative;
+  background: #1e1e1e; /* VS Code-like dark background */
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1em 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Preformatted text */
+.code-block pre {
+  margin: 0;
+  padding: 1em;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.4;
+  border-radius: 8px;
+}
+
+/* Copy button */
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+/* Hover/active effect */
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.copy-btn:active {
+  transform: scale(0.95);
+}
+
+/* Success state (when ✅ appears) */
+.copy-btn.copied {
+  background: #4caf50;
+  color: white;
+}
 
 #userInput {
   border-radius: 2rem;
