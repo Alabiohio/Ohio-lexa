@@ -96,13 +96,35 @@ async function sendMessage() {
   }
 }
 
+/* function typeBotMessage(container, rawText, callback) {
+  let words = rawText.split(" ");
+  let i = 0;
+
+  function typeNext() {
+    if (i < words.length) {
+      container.textContent += (i === 0 ? "" : " ") + words[i]; // stream words
+      i++;
+      container.scrollIntoView({ behavior: "smooth", block: "end" });
+      setTimeout(typeNext, 0.1); // ⏱ speed per word (80ms)
+    } else {
+      // After typing finishes → render Markdown
+      container.innerHTML = marked.parse(rawText);
+      hljs.highlightAll(); // ✅ highlight code
+      if (callback) callback();
+    }
+  }
+
+  typeNext();
+}
+*/
 // Append message to chat
 function appendMessage(sender, text, isBot=false) {
   const chatbox = document.getElementById("chatbox");
   const msgDiv = document.createElement("div");
   msgDiv.classList.add("message", sender === "user" ? "user-msg" : "bot-msg");
   msgDiv.innerHTML = `<p>${marked.parse(text)}</p>`;
-
+  
+  
   if (isBot) {
     const tools = document.createElement("div");
     tools.className = "tools";
@@ -115,9 +137,90 @@ function appendMessage(sender, text, isBot=false) {
   chatbox.appendChild(msgDiv);
   chatbox.scrollTop = chatbox.scrollHeight;
 
+  hljs.highlightAll();
+  
+    // ✅ Render math
+      renderMathInElement(msgDiv, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "$", right: "$", display: false } // optional inline
+        ]
+      });
+
+  
   // --- Save to localStorage ---
   saveChatHistory();
 }
+/*
+
+function typeBotMessage(container, rawText, callback) {
+  let words = rawText.split(" ");
+  let i = 0;
+
+  function typeNext() {
+    if (i < words.length) {
+      container.textContent += (i === 0 ? "" : " ") + words[i];
+      i++;
+      container.scrollIntoView({ behavior: "smooth", block: "end" });
+      setTimeout(typeNext, 0.1); // ⏱ speed per word
+    } else {
+      // After typing finishes → Markdown + Math
+      container.innerHTML = marked.parse(rawText);
+
+      // ✅ Highlight code
+      hljs.highlightAll();
+
+      // ✅ Render math
+      renderMathInElement(container, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "\\(", right: "\\)", display: false },
+          { left: "$", right: "$", display: false } // optional inline
+        ]
+      });
+
+      if (callback) callback();
+    }
+  }
+
+  typeNext();
+}
+
+function appendMessage(sender, text, isBot=false) {
+  const chatbox = document.getElementById("chatbox");
+  const msgDiv = document.createElement("div");
+  msgDiv.classList.add("message", sender === "user" ? "user-msg" : "bot-msg");
+
+  const content = document.createElement("p");
+  msgDiv.appendChild(content);
+
+  let tools;
+
+  if (isBot) {
+    tools = document.createElement("div");
+    tools.className = "tools";
+    tools.innerHTML = `
+      <button onclick="copyText(\`${text.replace(/`/g,"\\`")}\`)">
+        <i class="fas fa-copy"></i>
+      </button>`;
+  }
+
+  chatbox.appendChild(msgDiv);
+  chatbox.scrollTop = chatbox.scrollHeight;
+
+  if (isBot) {
+    typeBotMessage(content, text, () => {
+      msgDiv.appendChild(tools);
+      saveChatHistory();
+    });
+  } else {
+    content.innerHTML = marked.parse(text);
+    saveChatHistory();
+  }
+}
+*/
+
 
 // Typing indicator
 function showTyping() {
