@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">  
   
   <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script defer src="scripts/chat8.js"></script>
+  <script defer src="scripts/chat7.js"></script>
   <script defer type="module" src="scripts/analytics.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -77,9 +77,8 @@
             <button class="button alert" id="clrBtn"><i class="fas fa-trash"></i> Clear chat history</button>
           </li>
        </ul>
-        
+       
       <div class="cell text-center menuFt">
-            <p>Powered by <strong>Google LLC</strong></p>
              <a href="https://ohiocodespace.vercel.app" target="_blank" rel="noopener noreferrer">
            <img src="assets/imgs/ohio.png" style="height: 60px; width: 60px">
          </a>
@@ -95,13 +94,7 @@
   
   <main>
     
-        <!-- Overlay -->
-<div class="dialog-overlay" id="customDialog">
-  <div class="dialog-box">
-    <h4 id="dialogMessage">Message goes here</h4>
-    <div class="dialog-buttons" id="dialogButtons"></div>
-  </div>
-</div>
+    
     
   <div class="grid-container full chatbot-container">
       <div class="grid-x cell chat-window">
@@ -114,21 +107,14 @@
         <!-- Chat Messages -->
         <div id="chatbox" class="cell chat-body"></div>     
         
-        <div class="grid-x chat-footer">
-          
-          <div class="cell optDiv">
-            <button id="uploadImgBtn"><i class="fas fa-image"></i></button>     
-            <button id="captureImgBtn" onclick="document.getElementById('cameraInput').click()"><i class="fas fa-camera"></i></button>
-          </div> 
-          
+        <div class="grid-x chat-footer">         
           <div class="cell">
-            <input type="file" id="galleryInput" accept="image/*" hidden>
-            <input type="file" id="cameraInput" accept="image/*" capture="environment" hidden>
+            <input type="file" id="imageInput" accept="image/*" style="display:none;">
           </div>
           
           <div class="cell small-1 medium-1 large-1 align-center-middle text-center" style="margin-right: 25px">
-            <button class="btnI" id="openMedOpts" aria-label="Media Menu" aria-expanded="false"><i class="fas fa-image"></i></button>
-          </div>                         
+            <button class="button btnI" onclick="document.getElementById('imageInput').click()"><i class="fas fa-image"></i></button>
+          </div>
           
           <div class="cell small-7 medium-7 large-7 align-center-middle text-center" id="userInputBox" style="margin-right: 25px;">
             <textarea id="userInput" placeholder="Ask anything..."></textarea>
@@ -136,17 +122,20 @@
                           <div class="cell small-7 medium-7 large-7 align-center-middle text-center record-indicator" id="recordIndicator" style="display:none;">Listening...</div>
           
           <div class="cell small-2 medium-3 large-3 msg-rec align-center-middle text-center">
-            <button class="btnI" onclick="sendMessage()"><i class="fas fa-arrow-up"></i></button>
+            <button class="button btnI" onclick="sendMessage()"><i class="fas fa-arrow-up"></i></button>
             <span id="rcdSpan">
-              <button class="btnI" onclick="startRecording()"><i class="fas fa-microphone"></i></button>
+              <button class="button btnI" onclick="startRecording()"><i class="fas fa-microphone"></i></button>
             </span>                                    
           </div>          
-        </div>                    
+        </div>        
+        
+      <div class="cell text-center">
+        <p>Powered by <strong>Google LLC</strong></p>
+      </div>
         
       </div> 
-      </div>            
+      </div>      
   </main>    
-              
   
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/foundation-sites/dist/js/foundation.min.js"></script>
