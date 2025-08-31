@@ -132,9 +132,17 @@ cameraInput.value = "";
   try {
     // ✅ Add new user message to history
     let userParts = [];
-    if (input) userParts.push({ text: input });
-    if (pendingImage) userParts.push({ inline_data: { mime_type: "image/png", data: pendingImage } });
-
+    
+    if (input) {
+      userParts.push({ text: input });
+    } else if (pendingImage) {
+      userParts.push({ text: "Describe this image in detail." });
+    }
+    if (pendingImage) {
+      userParts.push({
+        inline_data: { mime_type: "image/png", data: pendingImage }
+      });
+    }
     conversationHistory.push({ role: "user", parts: userParts });
     trimHistory(); // limit size
  
