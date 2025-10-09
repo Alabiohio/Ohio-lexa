@@ -1,0 +1,10 @@
+<svg width="512" height="512" version="1.1" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Lexa Logo</title>
+ <defs>
+  <linearGradient id="a" x1="155.75" x2="354.15" y1="72.739" y2="462.11" gradientTransform="matrix(1.1073 0 0 1.0957 -27.352 -37.3)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#ef2cb0" offset=".16621"/>
+   <stop stop-color="#86e538" offset=".78709"/>
+  </linearGradient>
+ </defs>
+ <path d="m337.93 488.88c-50.57-69.923-72.822-149.7-131.04-161.29-43.728-8.0001-131.27 23.018-193.89 23.305 54.833-47.498 141.02-87.75 155.92-146.7 7.2593-25.853-6.8682-118.16-19.512-181.66 44.617 42.809 89.667 121.03 134.07 151.32 41.648 27.37 132.09 16.82 213.41 21.854-66.823 33.276-128.92 42.599-157.78 111.82-7.0812 22.105-6.0345 62.655-1.176 181.35z" fill="url(#a)" stroke-width="0" style="paint-order:fill markers stroke"/>
+</svg>
