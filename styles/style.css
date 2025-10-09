@@ -9,7 +9,6 @@ body {
   ;
   color: #fff;
   height: 100vh;
-  padding: 1rem;
 }
 
 /* Header */
@@ -173,7 +172,7 @@ body {
   background-color: inherit;
   display: flex;
   flex-direction: column;
-  height: 90vh;
+  height: 97vh;
 }
 
 .chat-header {
@@ -463,11 +462,18 @@ body {
 }
 
 #userInput {
-  border-radius: 2rem;
+  flex: 1;
+  resize: none;
+  overflow: hidden;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  line-height: 1.5;
+  max-height: 200px;
   background-color: transparent;
   box-shadow: 0 0 5px green;
-  border: none;
   color: #fff;
+  border-radius: 2rem;
 }
 
 #userInput:focus {
@@ -480,6 +486,7 @@ body {
   background-color: #333;
   color: lime;
   padding: 0.85rem 1rem;
+  cursor: pointer;
 }
 
 .btnI:active {
@@ -492,6 +499,7 @@ body {
   background-color: rgb(75, 75, 75);
   color: rgb(115, 115, 115);
   scale: 1;
+  cursor: not-allowed;
 }
 
 .btnII {
@@ -576,6 +584,7 @@ body {
   position: absolute;
   left: 0;
   top: 0;
+  padding-top: 1rem;
 }
 
 .menu.show {
