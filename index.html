@@ -75,17 +75,14 @@
       <div class="grid-x grid-margin-x align-center-middle text-center menu">
 
         <div class="cell lgLnk">
-          <a href="profile.html" rel="noopener noreferrer" title="profile" class="profilebtn">
-            <div id="user-profile" style="display: none;">
-              <img id="user-avatar" src="assets/imgs/default-avatar.svg" alt="Profile">
-              <span id="user-name"></span>
-            </div>
-          </a>
+          <div id="user-profile" style="display: none;">
+            <img id="user-avatar" src="assets/imgs/default-avatar.svg" alt="Profile">
+            <span id="user-name"></span>
+          </div>
         </div>
 
         <ul>
           <nav>
-            <li><i class="fas fa-user"></i><a href="profile.html" rel="noopener noreferrer">Profile</a></li>
             <li><i class="fas fa-info"></i><a href="about.html" target="_blank" rel="noopener noreferrer">About Lexa</a>
             </li>
             <li><i class="fas fa-legal"></i><a href="terms.html" target="_blank" rel="noopener noreferrer">Terms of
@@ -145,9 +142,6 @@
       </div>
     </div>
 
-
-
-
     <div class="cell align-center-middle text-center introBox">
       <h1 class="ai-effect">Ohio Lexa</h1>
     </div>
@@ -179,8 +173,11 @@
 
           <div class="cell small-7 medium-7 large-7 align-center-middle text-center" id="userInputBox"
             style="margin-right: 25px;">
-            <textarea id="userInput" placeholder="Ask anything..."></textarea>
+            <div class="chat-input-container">
+              <textarea id="userInput" placeholder="Type a message..." rows="1"></textarea>
+            </div>
           </div>
+
           <div class="cell small-7 medium-7 large-7 align-center-middle text-center record-indicator"
             id="recordIndicator" style="display:none;">Listening...</div>
 
