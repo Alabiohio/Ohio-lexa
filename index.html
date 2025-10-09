@@ -13,14 +13,14 @@
   <meta property="og:title" content="Lexa — Your AI Chat Assistant">
   <meta property="og:description"
     content="Chat naturally with Lexa. Send images and voice prompts, copy or listen to responses, and manage your chat history securely on your device.">
-  <meta property="og:image" content="https://ohio-lexa.vercel.app/assets/imgs/logo-bg.png">
+  <meta property="og:image" content="https://ohio-lexa.vercel.app/assets/imgs/lexa-chm.png">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://ohio-lexa.vercel.app/">
   <meta name="twitter:title" content="Lexa — Your AI Chat Assistant">
   <meta name="twitter:description"
     content="Chat naturally with Lexa. Send images and voice prompts, copy or listen to responses, and manage your chat history securely on your device.">
-  <meta name="twitter:image" content="https://ohio-lexa.vercel.app/assets/imgs/logo-bg.png">
+  <meta name="twitter:image" content="https://ohio-lexa.vercel.app/assets/imgs/lexa-chm.png">
 
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,72 +30,94 @@
   <link rel="icon" type="image/png" sizes="192x192" href="assets/drawable/ic-192.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/drawable/ic-180.png">
 
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.8.1/dist/css/foundation.min.css">
+  <link rel="stylesheet" href="styles/css/foundation.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/dialogue.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script defer src="scripts/chat8.js"></script>
+  <script defer src="scripts/chat9.js"></script>
+  <script defer src="scripts/dialogue.js"></script>
   <script defer type="module" src="scripts/analytics.js"></script>
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
     onload="renderMathInElement(document.body);"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
+  <script defer type="module" src="scripts/logout.js"></script>
+  <script defer type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/tailChase.js"></script>
 
 </head>
 
 <body>
 
   <header class="header">
-    <div class="grid-container">
-    <div class="grid-x grid-margin-x align-center-middle" id="grdX">
-      <div class="cell small-2 medium-2 large-2">
-        <a href="index.html">
-          <img src="assets/imgs/logo-tr.png" style="height: 35px; width: 35px; border-radius: 20px;">
-        </a>
-      </div>
-      <div class="cell small-6 medium-6 large-6 chat-header">
-        <span>LEXA</span>
-      </div>
-      <div class="cell small-1 medium-1 large-1 setDiv text-center">
-        <button class="menu-toggle" aria-label="Menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
-      </div>
-    </div>
-
-    <div class="grid-x grid-margin-x align-center-middle text-center menu">
-
-      <div class="cell lgLnk">
-        <a href="index.html">
-          <img src="assets/imgs/logo-tr.png" style="height: 35px; width: 35px; border-radius: 20px;">
-        </a>
+    <div class="grid-container headerDivI">
+      <div class="grid-x grid-margin-x align-center-middle" id="grdX">
+        <div class="cell small-2 medium-2 large-2">
+          <a href="index.html">
+            <img src="assets/imgs/logo-tr.png" id="headLogo" alt="Lexa's logo">
+          </a>
+        </div>
+        <div class="cell small-4 medium-4 large-4 chat-header">
+          <span>LEXA</span>
+        </div>
+        <div class="cell small-1 medium-1 large-1 setDiv text-center">
+          <button class="menu-toggle" aria-label="Menu" title="Menu" aria-expanded="false"><i
+              class="fas fa-bars"></i></button>
+        </div>
       </div>
 
+      <div class="grid-x grid-margin-x align-center-middle text-center menu">
 
-      <ul>
-        <nav>
-          <li><a href="about.html">About Lexa</a></li>
-          <li><a href="terms.html">Terms of Use</a></li>
-          <li><a href="policy.html">Privacy Policy</a></li>
-        </nav>
-        <li>
-          <button class="button alert" id="clrBtn"><i class="fas fa-trash"></i> Clear chat history</button>
-        </li>
-      </ul>
+        <div class="cell lgLnk">
+          <a href="profile.html" rel="noopener noreferrer" title="profile" class="profilebtn">
+            <div id="user-profile" style="display: none;">
+              <img id="user-avatar" src="assets/imgs/default-avatar.svg" alt="Profile">
+              <span id="user-name"></span>
+            </div>
+          </a>
+        </div>
 
-      <div class="cell text-center menuFt">
-        <p>Powered by <strong>Google LLC</strong></p>
-        <a href="https://ohiocodespace.vercel.app" target="_blank" rel="noopener noreferrer">
-          <img src="assets/imgs/ohio.png" style="height: 60px; width: 60px">
-        </a>
-        <p>
-          &copy; <span id="year"></span> Ohio Codespace. All rights reserved.
-        </p>
+        <ul>
+          <nav>
+            <li><i class="fas fa-user"></i><a href="profile.html" rel="noopener noreferrer">Profile</a></li>
+            <li><i class="fas fa-info"></i><a href="about.html" target="_blank" rel="noopener noreferrer">About Lexa</a>
+            </li>
+            <li><i class="fas fa-legal"></i><a href="terms.html" target="_blank" rel="noopener noreferrer">Terms of
+                Use</a></li>
+            <li><i class="fas fa-shield"></i><a href="policy.html" target="_blank" rel="noopener noreferrer">Privacy
+                Policy</a></li>
+          </nav>
+        </ul>
+        <div class="cell">
+          <button class="button alert" id="clrBtn" title="clear chat history" aria-label="clear chat history"><i
+              class="fas fa-trash"></i> Clear chat history</button>
+        </div>
+        <div class="cell">
+          <button class="button hollow" id="logout-btn" title="logout" aria-label="logout"><i
+              class="fas fa-power-off"></i> Logout</button>
+          <a href="login.html" class="button success" id="homeSigninBtn" title="sign in">Sign In</a>
+
+        </div>
+
+
+
+        <div class="cell text-center menuFt">
+          <p>Powered by <strong>Google LLC</strong></p>
+          <a href="https://ohiocodespace.vercel.app" target="_blank" rel="noopener noreferrer">
+            <img src="assets/imgs/ohio.png" alt="ohio Codespace logo" style="height: 60px; width: 60px">
+          </a>
+          <p>
+            &copy; <span id="year"></span> Ohio Codespace. All rights reserved.
+          </p>
+        </div>
+
       </div>
-
-    </div>
     </div>
   </header>
 
@@ -111,13 +133,27 @@
       </div>
     </div>
 
+    <!-- Login Dialog -->
+    <div id="login-dialog" class="login-dialog-overlay">
+      <div class="login-dialog-box">
+        <h3>Welcome!</h3>
+        <p>You’re not logged in. Please log in to access all features or continue as a guest.</p>
+        <div class="dialog-buttons">
+          <button id="login-btn">Login</button>
+          <button id="continue-btn">Continue without login</button>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="cell align-center-middle text-center introBox">
+      <h1 class="ai-effect">Ohio Lexa</h1>
+    </div>
+
     <div class="grid-container full chatbot-container">
       <div class="grid-x cell chat-window">
-
-        <div class="cell align-center-middle text-center introBox">
-          <h1 class="ai-effect">Ohio Lexa</h1>
-        </div>
-
 
         <!-- Chat Messages -->
         <div id="chatbox" class="cell chat-body"></div>
@@ -125,9 +161,10 @@
         <div class="grid-x chat-footer">
 
           <div class="cell optDiv">
-            <button id="uploadImgBtn"><i class="fas fa-image"></i></button>
-            <button id="captureImgBtn" onclick="document.getElementById('cameraInput').click()"><i
-                class="fas fa-camera"></i></button>
+            <button id="uploadImgBtn" title="upload image" aria-label="upload image"><i
+                class="fas fa-image"></i></button>
+            <button id="captureImgBtn" onclick="document.getElementById('cameraInput').click()" title="capture image"
+              aria-label="capture image"><i class="fas fa-camera"></i></button>
           </div>
 
           <div class="cell">
@@ -136,8 +173,8 @@
           </div>
 
           <div class="cell small-1 medium-1 large-1 align-center-middle text-center" style="margin-right: 25px">
-            <button class="btnI" id="openMedOpts" aria-label="Media Menu" aria-expanded="false"><i
-                class="fas fa-image"></i></button>
+            <button class="btnI" id="openMedOpts" aria-label="Media options" aria-expanded="false"
+              title="Media options"><i class="fas fa-image"></i></button>
           </div>
 
           <div class="cell small-7 medium-7 large-7 align-center-middle text-center" id="userInputBox"
@@ -147,10 +184,12 @@
           <div class="cell small-7 medium-7 large-7 align-center-middle text-center record-indicator"
             id="recordIndicator" style="display:none;">Listening...</div>
 
-          <div class="cell small-2 medium-3 large-3 msg-rec align-center-middle text-center">
-            <button class="btnI" onclick="sendMessage()"><i class="fas fa-arrow-up"></i></button>
+          <div class="cell small-2 medium-2 large-2 msg-rec align-center-middle text-center">
+            <button class="btnI" id="sendMessageBtn" title="send message" aria-label="send message"><i
+                class="fas fa-arrow-up"></i></button>
             <span id="rcdSpan">
-              <button class="btnI" onclick="startRecording()"><i class="fas fa-microphone"></i></button>
+              <button class="btnI" onclick="startRecording()" title="record audio" aria-label="record audio"><i
+                  class="fas fa-microphone"></i></button>
             </span>
           </div>
         </div>
@@ -160,8 +199,9 @@
   </main>
 
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/foundation-sites/dist/js/foundation.min.js"></script>
+  <script src="scripts/js/vendor/jquery.js"></script>
+  <script src="scripts/js/vendor/what-input.js"></script>
+  <script src="scripts/js/vendor/foundation.min.js"></script>
   <script>
     $(document).foundation();
   </script>

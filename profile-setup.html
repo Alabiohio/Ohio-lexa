@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Lexa — Profile Setup</title>
+    <meta name="description" content="Finish setting up your Lexa profile.">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/drawable/ic-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/drawable/ic-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/drawable/ic-180.png">
+
+    <link rel="stylesheet" href="styles/css/foundation.css" />
+    <link rel="stylesheet" href="styles/styleI.css">
+    <link rel="stylesheet" href="styles/profile.css">
+
+    <script defer type="module" src="scripts/analytics.js"></script>
+    <script defer type="module" src="scripts/profile-setup.js"></script>
+    <script defer type="module" src="scripts/analytics.js"></script>
+</head>
+
+<body>
+
+    <header class="profile-setup-header">
+        <div class="grid-container">
+            <div class="grid-x align-center-middle text-center">
+                <div class="cell">
+                    <img src="assets/imgs/lexa.svg" alt="Lexa's logo" id="pSlexa-logo">
+                    <span id="profile-setupHeaderName">Ohio Lexa</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="grid-container">
+
+            <div class="grid-x h1-grid align-center-middle text-center">
+                <div class="cell">
+                    <h1>Complete Your Profile</h1>
+                </div>
+            </div>
+
+            <div class="grid-x align-center-middle">
+                <div class="card">
+                    <form id="profile-form">
+                        <label for="username"> Username*
+                            <input type="text" id="username" placeholder="e.g John Doe" required />
+                        </label>
+                        <label for="dob"> Date of Birth
+                            <input type="date" id="dob" placeholder="Date of Birth (optional)" />
+                        </label>
+                        <label for="avatar">Add Profile Image (optional)
+                            <input type="file" id="avatar" accept="image/*" />
+                        </label>
+                        <img id="avatar-preview" alt="Avatar Preview" />
+                        <div class="cell text-center">
+                            <button type="submit" id="submitBtn" title="finish" aria-label="finish">Finish</button>
+                        </div>
+                    </form>
+                    <p id="message" class="message"></p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="grid-container align-center-middle profile-setupFooter">
+        <div class="grid-x align-center-middle text-center">
+            <div class="cell" id="profile-setupFooterLinks">
+                <a href="about.html" target="_blank" rel="noopener noreferrer">Lexa</a>
+                <a href="terms.html" target="_blank" rel="noopener noreferrer">Terms of Service</a>
+                <a href="policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+            </div>
+            <div class="cell">
+                <p>
+                    &copy; <span id="year"></span> Ohio Codespace. All rights reserved.
+                </p>
+            </div>
+    </footer>
+
+    <script>
+        function getYear() {
+            document.getElementById("year").textContent = new Date().getFullYear();
+        }
+        getYear();
+    </script>
+
+    <script src="scripts/js/vendor/jquery.js"></script>
+    <script src="scripts/js/vendor/what-input.js"></script>
+    <script src="scripts/js/vendor/foundation.min.js"></script>
+    <script>
+        $(document).foundation();
+    </script>
+
+</body>
+
+</html>
