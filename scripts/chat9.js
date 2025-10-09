@@ -134,6 +134,9 @@ function removePendingImage() {
   cameraInput.value = "";
 }
 
+
+
+
 // Send message (text + optional image)
 async function sendMessage() {
   if (introBox) introBox.classList.add("hideIntroBox");
@@ -153,6 +156,7 @@ async function sendMessage() {
   appendMessage("user", userMsg);
 
   inputField.value = "";
+  inputField.style.height = "auto";
   const typingId = showTyping();
 
   try {
@@ -204,12 +208,22 @@ async function sendMessage() {
 inputField.addEventListener("input", (e) => {
   const input = e.target.value;
 
+  inputField.style.height = "auto";
+  inputField.style.height = inputField.scrollHeight + "px";
+
   if (input.trim()) {
     sendMessageBtn.disabled = false;
     sendMessageBtn.addEventListener("click", sendMessage);
   } else {
     sendMessageBtn.disabled = true;
     sendMessageBtn.removeEventListener("click", sendMessage);
+  }
+});
+
+inputField.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage();
   }
 });
 
