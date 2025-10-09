@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <link rel="stylesheet" href="styles/css/foundation.css" />
+    <link rel="stylesheet" href="styles/styleI.css">
+    <link rel="stylesheet" href="styles/profile.css">
+    <link rel="stylesheet" href="styles/dialogue.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script defer type="module" src="scripts/supabaseClient.js"></script>
+    <script defer type="module" src="scripts/profile.js"></script>
+    <script defer src="scripts/dialogue.js"></script>
+    <script defer type="module" src="scripts/analytics.js"></script>
+    <script defer type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/tailChase.js"></script>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <header class="profile-header">
+        <div class="grid-container">
+            <div class="grid-x align-center-middle text-center">
+                <div class="cell small-3 medium-2 large-2 align-center-middle">
+                    <img src="assets/imgs/lexa.svg" alt="Lexa's logo">
+                    <a href="index.html" rel="noopener noreferrer"><span>Lexa</span></a>
+                </div>
+                <div class="cell small-1 medium-1 large-1 align-center-middle">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+                <div class=" small-7 medium-4 large-7 align-center-middle text-left">
+                    <span>Profile</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="grid-container">
+            <div class="grid-x align-center-middle">
+
+                <!-- Overlay -->
+                <div class="dialog-overlay" id="customDialog">
+                    <div class="dialog-box">
+                        <h4 id="dialogMessage">Message goes here</h4>
+                        <div class="dialog-buttons" id="dialogButtons"></div>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+
+                    <img id="user-avatar" src="assets/imgs/default-avatar.svg" alt="User Avatar" />
+                    <label for="avatar-upload" class="avatarUpload"><i class="fas fa-edit"></i></label>
+                    <input type="file" id="avatar-upload" accept="image/*" />
+
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+
+
+
+                            <div class="cell small-12">
+                                <label>Username</label>
+                                <div id="username-display" class="flex-between">
+                                    <span id="username-text"></span>
+                                    <button id="edit-username" class="button tiny hollow" title="edit"
+                                        aria-label="edit"><i class="fas fa-edit"></i></button>
+                                </div>
+                                <input type="text" id="username" style="display:none;"
+                                    placeholder="Enter new username" />
+                            </div>
+
+                            <div class="cell small-12">
+                                <label>Date of Birth</label>
+                                <div id="dob-display" class="flex-between">
+                                    <span id="dob-text"></span>
+                                    <button id="edit-dob" class="button tiny hollow" title="edit" aria-label="edit"><i
+                                            class="fas fa-edit"></i></button>
+                                </div>
+                                <input type="date" id="dob" style="display:none;" />
+                            </div>
+
+                            <div class="cell small-12">
+                                <label>Email
+                                    <input type="email" id="email" readonly />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button id="save-profile" class="button success" title="Save changes" aria-label="Save changes">
+                            <i class="fas fa-check"></i> Save Changes
+                        </button>
+                        <button id="logout" class="button hollow" title="Logout" aria-label="logout">
+                            <i class="fas fa-power-off"></i> Logout
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="grid-container align-center-middle profile-setupFooter">
+        <div class="grid-x align-center-middle text-center">
+            <div class="cell" id="profile-setupFooterLinks">
+                <a href="about.html">Lexa</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="policy.html">Privacy Policy</a>
+            </div>
+            <div class="cell">
+                <p>
+                    &copy; <span id="year"></span> Ohio Codespace. All rights reserved.
+                </p>
+            </div>
+    </footer>
+
+    <script>
+        function getYear() {
+            document.getElementById("year").textContent = new Date().getFullYear();
+        }
+        getYear();
+    </script>
+
+
+</body>
+
+</html>
