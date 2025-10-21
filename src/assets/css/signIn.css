@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     background: var(--bgColorI);
     /* justify-content: center;
@@ -210,4 +211,218 @@ label {
     color: #2a9d8f;
     margin-top: 0.5rem;
     display: none;
+=======
+body {
+    background: var(--bgColorI);
+    /* justify-content: center;
+    height: 100vh;
+    font-family: "Poppins", sans-serif;
+    padding: 2rem;*/
+}
+
+.profile-setup-header {
+    background: transparent;
+    color: rgb(255, 255, 255);
+    padding: 2rem 1rem;
+    text-align: center;
+    border-radius: 25px 0 0 25px;
+    font-family: var(--font-familyIII);
+    width: 100%;
+}
+
+#pSlexa-logo {
+    height: 100px;
+    width: 100px;
+}
+
+#profile-setupHeaderName {
+    font-weight: 700;
+    font-size: 2.5rem;
+}
+
+.h1-grid {
+    padding: 2rem;
+}
+
+.card,
+.login-container,
+.signup-container {
+    background: inherit;
+    padding: 2rem;
+    box-shadow: 0 0px 10px rgb(23, 45, 0);
+    max-width: 600px;
+    width: 100%;
+    border-radius: 3rem;
+    border: none;
+}
+
+h1 {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="file"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 1rem;
+    border: 1px solid #ccc;
+    background-color: inherit;
+    color: rgb(191, 191, 191);
+}
+
+input:focus {
+    background-color: rgb(14, 13, 13) !important;
+}
+
+input[type="date"] {
+    color: rgb(191, 191, 191);
+}
+
+input[type="file"] {
+    color: rgb(191, 191, 191);
+}
+
+label {
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+#submitBtn,
+.loginBtn,
+#saveProfile,
+.google-btn {
+    background: linear-gradient(3000deg, rgb(0, 167, 0), black, rgb(2, 103, 2));
+    color: white;
+    padding: 0.9rem 3rem;
+    border-radius: 2rem !important;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.5s;
+}
+
+#saveProfile {
+    width: 100%;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.google-btn {
+    display: inline-flex;
+    align-items: center;
+    background: #fff;
+    color: #555;
+    border: 1px solid #ddd;
+    padding: 10px 50px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.google-btn:hover {
+    background-color: #f7f7f7;
+}
+
+.google-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+/*** disabled style ***/
+#google-btn:disabled {
+    pointer-events: none;
+    opacity: .65;
+    color: #7e7e7e;
+    background: #dcdcdc;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.or {
+    padding: 1rem;
+}
+
+#submitBtn:hover {
+    background: linear-gradient(3000deg, rgb(0, 0, 0), rgb(0, 94, 0), rgb(0, 0, 0));
+}
+
+#loadIcon {
+    display: none;
+}
+
+#avatar-preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 1rem auto;
+    display: none;
+    border: 2px solid #ccc;
+}
+
+.message {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.error {
+    color: #d9534f;
+}
+
+.success {
+    color: #f4f4f4;
+}
+
+.profile-setupFooter {
+    padding: 1rem 1rem;
+    width: 100%;
+}
+
+#profile-setupFooterLinks {
+    padding: 0.5rem;
+}
+
+.profile-setupFooter a {
+    padding: 0.3rem;
+    color: rgb(35, 249, 67);
+}
+
+.profile-setupFooter a:hover {
+    text-decoration: underline;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.form-footer a {
+    color: chartreuse;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    font-size: 0.9rem;
+    color: #e63946;
+    margin-top: 0.5rem;
+    display: none;
+}
+
+.success-message {
+    font-size: 0.9rem;
+    color: #2a9d8f;
+    margin-top: 0.5rem;
+    display: none;
+>>>>>>> a3b44d6fb8c71b730f438ac29d576b7db5de1647
 }

@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+# Ohio-lexa
+Ai chatbot 
+# 🤖 Lexa – AI Chatbot  
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Lexa is a modern AI-powered chatbot built with **Google Gemini 2.0 Flash**.  
+It is designed to be responsive, interactive, and user-friendly, with support for voice prompts, image-based prompts, and text responses.  
 
-## Available Scripts
+Created by **Ohio Codespace**.  
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## ✨ Features  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 🖼️ **Send Images as Prompts** – Upload an image and add a text prompt before sending.  
+- 🎙️ **Voice Messages as Prompts** – Speak instead of typing (requires microphone permission).  
+- 📖 **Copy & Read Aloud Responses** – Easily copy AI responses or listen to them.  
+- ⚡ **Powered by Gemini 2.0 Flash** – Fast and intelligent responses.  
+- 🔒 **Your Privacy Matters**  
+  - Only selected images are accessed (never stored).  
+  - Chat history is saved locally on the user’s device and can be cleared anytime.  
+- 🚫 **Note**: Image generation is not supported (for now).  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 📸 Screenshots  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 💬 Chat Interface  
+![Chat Interface Screenshot](assets/chat-interface.png)  
 
-### `npm run build`
+### 🎙️ Voice Input  
+![Voice Input Screenshot](assets/voice-input.png)  
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🖼️ Image Prompt  
+![Image Prompt Screenshot](assets/image-prompt.png)  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### ⚙️ About Section  
+![About Section Screenshot](assets/about-section.png)  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 📂 Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+lexa-chatbot/ │── index.html       # Main chatbot interface │── about.html       # About section │── terms.html       # Terms of Service │── policy.html      # Privacy Policy │── styles/          # CSS files │── scripts/         # JavaScript files │── assets/          # Images, icons, screenshots
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🚀 Getting Started  
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 1. Clone the repository  
+git clone https://github.com/your-username/lexa-chatbot.git
+cd lexa-chatbot
 
-## Learn More
+### 2. Open in Browser
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Simply open index.html in your browser.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 3. Configure Google Gemini API
 
-### Code Splitting
+In your main script file inside scripts/, replace the placeholder with your Google Gemini API Key:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+const API_KEY = "YOUR_API_KEY";
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## 📜 Terms of Service
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+See the full Terms of Service.
 
-### Advanced Configuration
+🔒 Privacy Policy
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+See the full Privacy Policy.
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## 🛠️ Tech Stack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Foundation 6 – Responsive layout framework
+
+Google Gemini 2.0 Flash – AI model powering Lexa
+
+Vanilla JavaScript – Chat interaction logic
+
+
+
+---
+
+## 👨‍💻 Author
+
+Ohio Codespace
+
+🌐 Website
+
+💻 Frontend Developer | AI Enthusiast
+
+
+
+---
+
+## 📌 License
+
+This project is licensed under the MIT License – you are free to use, modify, and distribute.
