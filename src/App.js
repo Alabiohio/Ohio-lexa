@@ -314,7 +314,7 @@ function Home() {
               </div>
             )}
 
-            <div className="cell small-2 medium-2 large-2 msg-rec align-center-middle text-center">
+            <div className="cell small-2 medium-2 large-2 msg-rec align-center-middle text-left">
               <button
                 className="btnI"
                 id="sendMessageBtn"

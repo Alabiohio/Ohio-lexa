@@ -2,7 +2,7 @@
 
 :root {
   --font-familyIV: "Lemon", serif;
-  --bgI: "linear-gradient(220deg, rgb(3, 21, 3), rgb(0, 0, 0));";
+  --bgI: linear-gradient(220deg, rgb(3, 21, 3), rgb(0, 0, 0));
 }
 
 body {
@@ -503,7 +503,7 @@ body {
   border-radius: 50%;
   background-color: #333;
   color: lime;
-  padding: 0.85rem 0.85rem;
+  padding: 0.65rem 0.65rem;
   cursor: pointer;
 }
 
