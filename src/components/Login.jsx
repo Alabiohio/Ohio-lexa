@@ -91,7 +91,7 @@ const Login = () => {
                 if (!profile || !profile.username) {
                     navigate('/profile-setup')
                 } else {
-                    navigate('/chat')
+                    navigate('/')
                 }
             }
         }
