@@ -11,7 +11,7 @@ let currentUser = null;
 const { marked } = require('marked');
 
 
-const API_KEY = "AIzaSyDWnyPqVNNhHd7Q2HElWqhUiUuShs0hwDs";
+const API_KEY = "AIzaSyBHawwgSa4w3U_tNSkC5uWmIFpcbXPKFyo";
 const model = "gemini-2.0-flash";
 export const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=` + API_KEY;
 const inputBox = document.getElementById("userInputBox");
