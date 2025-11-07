@@ -11,13 +11,15 @@ let currentUser = null;
 const { marked } = require('marked');
 
 
-const API_KEY = "AIzaSyBHawwgSa4w3U_tNSkC5uWmIFpcbXPKFyo";
+const API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
 const model = "gemini-2.0-flash";
 export const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=` + API_KEY;
 const inputBox = document.getElementById("userInputBox");
 const recordSpan = document.getElementById("rcdSpan");
 export let conversationHistory = [];
 const MAX_HISTORY = 20; // keep last 20 messages (10 user+bot exchanges)
+const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_CUSTOM_SEARCH_API_KEY;
+const SEARCH_ENGINE_ID = process.env.REACT_APP_SEARCH_ENGINE_ID;
 
 document.addEventListener("DOMContentLoaded", async () => {
     const {
@@ -34,6 +36,28 @@ function trimHistory() {
         conversationHistory = conversationHistory.slice(-MAX_HISTORY);
     }
 }
+
+
+
+// --- GOOGLE WEB SEARCH FEATURE ---
+async function searchTheWeb(query) {
+    const url = `https://www.googleapis.com/customsearch/v1?key=${GOOGLE_API_KEY}&cx=${SEARCH_ENGINE_ID}&q=${encodeURIComponent(query)}`;
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (!data.items || data.items.length === 0) return null;
+
+    const topResults = data.items.slice(0, 5).map(item => ({
+        title: item.title,
+        snippet: item.snippet,
+        link: item.link
+    }));
+
+    return topResults;
+}
+
+
+
 
 export async function sendMessage(
     pendingImage,
@@ -64,6 +88,72 @@ export async function sendMessage(
     try {
         // ✅ Add new user message to history
         let userParts = [];
+
+
+
+        if (input.toLowerCase().startsWith("search ")) {
+            removeTyping(typingId);
+            const query = input.replace(/^search( for)? /i, "");
+            const results = await searchTheWeb(query);
+
+            if (!results) {
+                appendMessage("bot", "❌ No results found on the web.", true);
+                return;
+            }
+
+            // Build the context Gemini will use
+            const context = results
+                .map((r, i) => `[${i + 1}] ${r.title}: ${r.snippet}`)
+                .join("\n\n");
+
+            const prompt = `
+Using the following web search results, write a factual, natural, and helpful response to the user query.
+Cite sources inline using [1], [2], etc., when referencing them.
+
+User query: "${query}"
+
+Web results:
+${context}
+`;
+
+            const res = await fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    contents: [{ role: "user", parts: [{ text: prompt }] }],
+                }),
+            });
+
+            const data = await res.json();
+            const answer =
+                data.candidates?.[0]?.content?.parts?.[0]?.text ||
+                "⚠️ I couldn’t form a summary from the web results.";
+
+            // Turn [1], [2] etc. into clickable, hoverable sources
+            let formattedAnswer = answer;
+            results.forEach((r, i) => {
+                const linkTag = `
+      <sup>
+        <a href="${r.link}" target="_blank" class="source-link" title="${r.link}">
+          [${i + 1}]
+        </a>
+      </sup>
+    `;
+                formattedAnswer = formattedAnswer.replace(
+                    new RegExp(`\\[${i + 1}\\]`, "g"),
+                    linkTag
+                );
+            });
+
+            appendMessage("bot", formattedAnswer, true);
+
+            userParts.push({ text: input });
+            await saveMessage("user", userParts);
+            await saveMessage("model", [{ text: formattedAnswer }]);
+            return;
+        }
+
+
 
         if (input) {
             userParts.push({ text: input });

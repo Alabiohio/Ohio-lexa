@@ -67,6 +67,30 @@ body {
 
 
 
+.source-link {
+  color: #49f17e !important;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: help;
+  position: relative;
+}
+
+.source-link:hover::after {
+  content: attr(title);
+  position: absolute;
+  left: 0;
+  top: -30px;
+  background: #222;
+  color: #fff;
+  font-size: 0.8em;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  z-index: 999;
+  opacity: 0.95;
+}
+
+
 /* Works on Firefox */
 * {
   scrollbar-width: thin;
