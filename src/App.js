@@ -132,6 +132,7 @@ function Home() {
     userInputRef.current.value = "";
     userInputRef.current.style.height = "auto";
     setText(!text);
+    removePendingImage();
   };
 
   const { isRecording, startRecording, stopRecording } = useSpeechRecognition(sendVMessage);

@@ -138,10 +138,6 @@ export async function sendMessage(
 
     if (!input && !pendingImage) return;
 
-    if (pendingImage) {
-        setImagePreview(null)
-    }
-
 
     // 🧩 Combine text + image for display
     let userMsg = input || "";
@@ -165,8 +161,11 @@ export async function sendMessage(
     }
     appendMessage("user", userMsg);
 
-    //inputField.value = "";
-    //inputField.style.height = "auto";
+    if (pendingImage) {
+        setImagePreview(null);
+        pendingImage = null;
+    }
+
     const typingId = showTyping();
 
     try {
@@ -175,9 +174,13 @@ export async function sendMessage(
             userParts.push({ text: input });
         }
 
+        setImagePreview(null);
+        pendingImage = null;
+
         const queryText = input || qrText || "Describe this image in detail.";
         const modelParts = [...userParts];
 
+        setImagePreview(null)
 
         // Store for history (exclude fallback text)
         const storedUserParts = userParts.filter(p => {
@@ -334,6 +337,7 @@ ${context}
         appendMessage("bot", "⚠️ Message didn't send, please retry.");
     } finally {
         pendingImage = null;
+        setImagePreview(null);
     }
 }
 
