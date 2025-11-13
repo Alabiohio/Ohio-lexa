@@ -12,6 +12,7 @@
     "dompurify": "^3.3.0",
     "foundation-sites": "^6.9.0",
     "highlight.js": "^11.11.1",
+    "jsqr": "^1.4.0",
     "katex": "^0.16.25",
     "ldrs": "^1.1.7",
     "marked": "^16.4.1",

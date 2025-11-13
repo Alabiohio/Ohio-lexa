@@ -195,11 +195,22 @@ function Home() {
         setIsMesPresent(true);
         data.forEach((msg) => {
           conversationHistory.push(msg);
-          appendMessage(
-            msg.role === "user" ? "user" : "bot",
-            (msg.parts || []).map((p) => p.text || "").join(" "),
-            msg.role !== "user"
-          );
+
+          let messageHTML = "";
+
+          msg.parts.forEach((part) => {
+            if (part.text) {
+              messageHTML += part.text + "<br>";
+            }
+
+            // if image was saved, render it
+            if (part.inline_data && part.inline_data.data) {
+              messageHTML += `<img src="data:${part.inline_data.mime_type};base64,${part.inline_data.data}" class="preview"><br>`;
+            }
+          });
+
+          appendMessage(msg.role === "user" ? "user" : "bot", messageHTML, msg.role !== "user");
+
         });
 
         if (chatboxRef.current) {
