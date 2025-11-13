@@ -274,7 +274,7 @@ ${context}
         });
 
         const data = await response.json();
-        const reply =
+        let reply =
             data.candidates?.[0]?.content?.parts?.[0]?.text || "⚠️ Error!";
 
         // --- STEP 3: Retry via web if reply looks incomplete ---
