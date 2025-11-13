@@ -185,8 +185,8 @@ export async function sendMessage(
 
             const txt = p.text.trim();
             const isDescribeFallback = txt.startsWith("Describe this image in detail.");
-            const isQrTextOnly = txt.startsWith(qrText) && userParts.length === 1;
-            const isQrText = qrText && txt === qrText;
+            const isQrTextOnly = txt.startsWith(`Using the following qr code result, tell the user the content of the qr code, then offer help suggestions based on the qr code results if you think it's needed ${qrText}`) && userParts.length === 1;
+            const isQrText = txt === `Using the following qr code result, tell the user the content of the qr code, then offer help suggestions based on the qr code results if you think it's needed ${qrText}`;
             // const isQrFallback = txt.startsWith(`This is a QR code. The decoded text is:\n"${qrText}"`);
 
             // Always skip fallback text
