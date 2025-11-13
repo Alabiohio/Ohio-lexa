@@ -1,10 +1,6 @@
 // Menu.jsx
 import React, { useState, useRef, useEffect } from 'react';
-import {
-    BrowserRouter as Router,
-    NavLink,
-    useNavigate
-} from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import './../App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { chatContainer } from '../App';
@@ -107,7 +103,7 @@ function Menu() {
         if (isCurrentUser && userNameRef.current && userAvatarRef.current) {
             showUserProfile(isCurrentUser);
         }
-    }, [isCurrentUser]);
+    }, [isCurrentUser, navigate]);
 
 
     return (

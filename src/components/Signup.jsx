@@ -21,7 +21,7 @@ const Signup = () => {
         setLoadingEmail(true)
         setMessage('')
 
-        const { data, error } = await supabase.auth.signUp({
+        const { error } = await supabase.auth.signUp({
             email,
             password,
         })
@@ -39,7 +39,7 @@ const Signup = () => {
 
     const handleGoogleSignIn = async () => {
         setLoadingGoogle(true)
-        const { data, error } = await supabase.auth.signInWithOAuth({
+        const { error } = await supabase.auth.signInWithOAuth({
             provider: 'google',
             options: {
                 redirectTo: window.location.origin, // redirect back to your app

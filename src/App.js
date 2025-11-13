@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, use } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -59,9 +59,9 @@ function Home() {
   const [isMedOpen, setIsMedOpen] = useState(false);
   const [pendingImage, setPendingImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
-  const [resetInputValue, setResetInputValue] = useState(false);
+  const [, setResetInputValue] = useState(false);
   const [isMsgPresent, setIsMesPresent] = useState(false);
-  const [isUser, setIsUser] = useState(null); // <-- Moved useState here
+  const [, setIsUser] = useState(null); // <-- Moved useState here
   const userInputRef = useRef(null); // add this ref for the textarea
   const [text, setText] = useState(null);
   const sendBtnRef = useRef(null);
