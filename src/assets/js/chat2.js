@@ -411,7 +411,7 @@ export function appendMessage(sender, text, isBot = false) {
     renderMathInElement(msgDiv, {
         delimiters: [
             { left: "$$", right: "$$", display: true },
-            { left: "\", right: "\", display: false },
+            { left: "\\(", right: "\\)", display: false },
             { left: "$", right: "$", display: false }
         ]
     });
