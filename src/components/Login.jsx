@@ -13,7 +13,8 @@ const Login = () => {
     const [password, setPassword] = useState('')
     const [loadingEmail, setLoadingEmail] = useState(false);
     const [loadingGoogle, setLoadingGoogle] = useState(false);
-    const [message, setMessage] = useState('')
+    const [message, setMessage] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
     const navigate = useNavigate()
 
     // Handle normal email/password login
@@ -28,7 +29,13 @@ const Login = () => {
         })
 
         if (error) {
-            setMessage(`❌ ${error.message}`)
+            if (error.message.includes("Failed to fetch")) {
+                setErrorMsg("Something went wrong!");
+                setMessage(errorMsg);
+            } else {
+                setErrorMsg(error.message);
+                setMessage(errorMsg);
+            }
             setLoadingEmail(false)
             return
         }
@@ -123,7 +130,7 @@ const Login = () => {
 
 
                         {message && (
-                            <p style={{ color: message.startsWith('❌') ? 'red' : 'green' }}>
+                            <p style={{ color: message.includes(errorMsg) ? 'red' : 'green' }}>
                                 {message}
                             </p>
                         )}
@@ -218,7 +225,7 @@ const styles = {
         marginTop: '15px',
     },
     signupLink: {
-        color: '#007bff',
+        color: '#5eff00ff',
         textDecoration: 'none',
         fontWeight: 'bold',
     },

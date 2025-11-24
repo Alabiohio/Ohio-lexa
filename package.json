@@ -1,6 +1,6 @@
 {
   "name": "ohio-lexa",
-  "version": "0.1.0",
+  "version": "1.3.5",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.1.0",

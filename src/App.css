@@ -219,22 +219,89 @@ body {
 
 .optDiv.toggleOptMenu {
   display: flex;
+  animation: optSlideUp 0.5s ease;
+}
+
+@keyframes optSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .optDiv button {
-  padding: 2rem;
+  padding: 0.8rem;
   background-color: #222;
   border-radius: 2rem;
 }
 
 .optDiv button i {
-  color: lime;
-  font-size: 2.5rem;
+  color: rgb(178, 228, 178);
+  font-size: 1.5rem;
 }
 
 .optDiv button:active {
   scale: 0.93;
 }
+
+.optDiv button i.sWActive {
+  color: #00f21c;
+  background-color: #002b05;
+}
+
+.optDiv button i.sWInactive {
+  color: rgb(178, 228, 178);
+  background-color: #222;
+}
+
+.optDiv button.sWActive {
+  color: #00f21c;
+  background-color: #002b05;
+}
+
+.optDiv button.sWInactive {
+  color: rgb(178, 228, 178);
+  background-color: #222;
+}
+
+#userInputBox {
+  width: 650px;
+}
+
+.btnI.rotate {
+  animation: icRotate 0.4s ease;
+}
+
+@keyframes icRotate {
+  form {
+    transform: rotate(0)
+  }
+
+  to {
+    transform: rotate(90deg);
+  }
+}
+
+
+.btnI.rotate2 {
+  animation: icRotate2 0.4s ease;
+}
+
+@keyframes icRotate2 {
+  form {
+    transform: rotate(90deg)
+  }
+
+  to {
+    transform: rotate(-90deg);
+  }
+}
+
 
 .chat-window {
   background-color: inherit;
@@ -271,7 +338,10 @@ body {
   display: flex;
   flex-direction: column;
   margin-top: 4rem;
+  margin-bottom: 5.1rem;
 }
+
+
 
 .introBox {
   position: absolute;
@@ -291,7 +361,21 @@ body {
   margin: 6px 0;
   border-radius: 20px;
   word-wrap: break-word;
+  animation: msgAnime 0.3s ease;
 }
+
+@keyframes msgAnime {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 .user-msg {
   align-self: flex-end;
@@ -351,6 +435,7 @@ body {
   font-size: 15px;
   line-height: 1.5;
 }
+
 
 /* Bot messages */
 
@@ -579,12 +664,32 @@ body {
 }
 
 /* Footer */
+.chatFooter {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* padding: 0rem 5rem 0 5rem;*/
+}
 
 .chat-footer {
-  background: inherit;
-  border-radius: 4rem;
+  background: var(--bgI);
+  border-radius: 4rem 4rem 0 0;
   padding: 0.8rem;
   box-shadow: 0 0 2px green;
+  max-width: 950px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.msgBtns {
+  display: flex;
+  max-width: 90%;
+  justify-content: center;
 }
 
 .tools {
@@ -613,12 +718,27 @@ body {
 }
 
 .preview {
-  max-width: 120px;
+  width: 150px;
   background: inherit;
-  border-radius: 1.8rem;
+  border-radius: 1rem;
   padding: 0.3rem;
-  height: 100px;
+  height: 150px;
+  object-fit: cover;
+  animation: imgAnime 0.3s ease;
 }
+
+@keyframes imgAnime {
+  from {
+    transform: translateY(50px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+
+}
+
+
 
 .menu {
   position: fixed;
@@ -852,7 +972,7 @@ body {
 
 
 .ai-effect {
-  font-size: 2.8rem;
+  font-size: 2rem;
   font-weight: bold;
   font-family: var(--font-familyIV);
   background: linear-gradient(90deg, #ff00ff, #00ffff, #ff9900);
@@ -1012,6 +1132,95 @@ footer p a {
   }
 }
 
+.edits {
+  display: flex;
+  gap: 150px;
+}
+
+
+
+.editBtn,
+.saveBtn,
+.notEditBtn {
+  padding: 0.8rem;
+  background-color: #005009;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  font-size: 0.8rem;
+  border-radius: 8rem
+}
+
+.notEditBtn {
+  color: red;
+  background-color: #002b05;
+}
+
+
+.saveBtn {
+  background-color: #009912;
+  color: #000;
+}
+
+
+.edit-avatar-label {
+  cursor: pointer;
+}
+
+.profile-pic.editable {
+  border: 2px dashed #888;
+  padding: 5px;
+}
+
+.edit-username-input {
+  width: 90%;
+  margin-top: 10px;
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 6px;
+}
+
+
+
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-pic {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* The overlay edit icon */
+.avatar-overlay {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+/* Hover effect */
+.avatar-overlay:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
 
 
 
@@ -1071,6 +1280,7 @@ footer p a {
   body {
     padding: 5.4rem;
     padding-top: 1rem;
+    background: red;
   }
 
   #headLogo {
@@ -1084,6 +1294,10 @@ footer p a {
 
   .menu-toggle {
     font-size: 1.8rem;
+  }
+
+  .chat-footer {
+    max-width: 640px;
   }
 }
 
@@ -1106,4 +1320,111 @@ footer p a {
   .menu-toggle {
     font-size: 2rem;
   }
+}
+
+
+@media (min-width: 970px) {
+  body {
+    padding: 12rem;
+    padding-top: 1rem;
+  }
+
+  #headLogo {
+    height: 60px;
+    width: 60px;
+  }
+
+  .chat-header span {
+    font-size: 2.5rem;
+    letter-spacing: 7px;
+  }
+
+  .menu-toggle {
+    font-size: 2rem;
+  }
+}
+
+
+@media (min-width: 1000px) {
+  body {
+    padding: 9rem;
+    padding-top: 1rem;
+  }
+
+  #headLogo {
+    height: 60px;
+    width: 60px;
+  }
+
+  .chat-header span {
+    font-size: 2.5rem;
+    letter-spacing: 7px;
+  }
+
+  .chat-footer {
+    max-width: 800px;
+  }
+
+
+  .menu-toggle {
+    font-size: 2rem;
+  }
+}
+
+
+@media (min-width: 1160px) {
+  body {
+    padding: 9rem;
+    padding-top: 1rem;
+  }
+
+  #headLogo {
+    height: 60px;
+    width: 60px;
+  }
+
+  .chat-header span {
+    font-size: 2.5rem;
+    letter-spacing: 7px;
+  }
+
+  .chat-footer {
+    max-width: 900px;
+  }
+
+
+  .menu-toggle {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1300px) {
+  body {
+    padding: 18rem;
+    padding-top: 1rem;
+  }
+
+  #headLogo {
+    height: 60px;
+    width: 60px;
+  }
+
+  .chat-header span {
+    font-size: 2.5rem;
+    letter-spacing: 7px;
+  }
+
+  .chat-footer {
+    max-width: 900px;
+  }
+
+
+  .menu-toggle {
+    font-size: 2rem;
+  }
+}
+
+.retry {
+  color: white;
+  cursor: pointer;
 }

@@ -9,7 +9,7 @@ import {
 import 'foundation-sites/dist/css/foundation.min.css';
 import './App.css';
 import './assets/css/cssI.css';
-import { sendMessage, conversationHistory, appendMessage } from './assets/js/chat2.js';
+import { sendMessage, conversationHistory, appendMessage, searchWeb } from './assets/js/chat2.js';
 import Menu from "./components/menu";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
@@ -22,6 +22,7 @@ import { handleImageSelection } from './utils/imageUtils.js';
 import { useSpeechRecognition } from './utils/voiceUtils.js';
 import { supabase } from './supabaseClient.js';
 import useRealTimeInternetStatus from "./assets/js/onlineStatus.js";
+import { fetchUserProfile } from './assets/js/fetch.js';
 
 export let chatContainer;
 export let isMsgPresent;
@@ -61,7 +62,7 @@ function Home() {
   const [imagePreview, setImagePreview] = useState(null);
   const [, setResetInputValue] = useState(false);
   const [isMsgPresent, setIsMesPresent] = useState(false);
-  const [, setIsUser] = useState(null); // <-- Moved useState here
+  const [isUser, setIsUser] = useState(null); // <-- Moved useState here
   const userInputRef = useRef(null); // add this ref for the textarea
   const [text, setText] = useState(null);
   const sendBtnRef = useRef(null);
@@ -206,7 +207,7 @@ function Home() {
 
             // if image was saved, render it
             if (part.inline_data && part.inline_data.data) {
-              messageHTML += `<img src="data:${part.inline_data.mime_type};base64,${part.inline_data.data}" class="preview"><br>`;
+              messageHTML += `<img src="data:${part.inline_data.mime_type};base64,${part.inline_data.data}" className="preview"><br>`;
             }
           });
 
@@ -252,6 +253,52 @@ function Home() {
     navigate('/login')
   }
 
+  const [useWeb, setUseWeb] = useState(false);
+
+  const searchWebToggle = () => {
+    setUseWeb((prev) => !prev);
+  }
+
+  useEffect(() => {
+    searchWeb(useWeb);
+  }, [useWeb]);
+
+
+  //user name
+
+
+
+  const userNamedRef = useRef();
+
+  const [isUserName, setIsUserName] = useState("");
+
+  useEffect(() => {
+    async function loadProfile() {
+      const result = await fetchUserProfile();
+
+      if (result?.username) {
+        setIsUserName(result.username);
+      }
+    }
+
+    // only run once (or when user changes in your auth context)
+    loadProfile();
+
+  }, [isUser]); // this is fine if isUser tracks auth state
+
+
+
+
+  useEffect(() => {
+    if (!isUserName || !userNamedRef.current) return;
+
+    userNamedRef.current.textContent = isUserName.split(" ")[0] || isUserName;
+
+  }, [isUserName, isMsgPresent]);
+
+
+
+
   return (
     <div>
       <div
@@ -279,7 +326,7 @@ function Home() {
 
       {!isMsgPresent && (
         <div className="cell align-center-middle text-center introBox" ref={introBoxRef}>
-          <h1 className="ai-effect">Ohio Lexa</h1>
+          <h1 className="ai-effect">Hello <span ref={userNamedRef}></span></h1>
         </div>
       )}
 
@@ -288,70 +335,86 @@ function Home() {
 
           <div id="chatbox" ref={chatboxRef} className="cell chat-body"></div>
 
-          <div className="grid-x chat-footer">
+          <div className='chatFooter'>
+            <div className="cell chat-footer">
 
-            {imagePreview && (
-              <div>
-                <img src={imagePreview} class="preview" alt='preview' />
-                <button class="btnII" onClick={removePendingImage}><i class="fas fa-close"></i></button>
+              {imagePreview && (
+                <div>
+                  <img src={imagePreview} className="preview" alt='preview' />
+                  <button className="btnII" onClick={removePendingImage}><i className="fas fa-close"></i></button>
+                </div>
+              )}
+              <div className={` optDiv ${isMedOpen ? 'toggleOptMenu' : ''}`}>
+                <button id="searchTheWebBtn" onClick={searchWebToggle} className={`${useWeb ? 'sWActive' : 'sWInactive'}`} title="Search the web"
+                  aria-label="Search the web"><i className={`fas fa-globe ${useWeb ? 'sWActive' : 'sWInactive'}`}></i>
+                </button>
+                <button id="uploadImgBtn" onClick={handleUploadBtn} title="upload image" aria-label="upload image"><i
+                  className="fas fa-image"></i>
+                </button>
+                <button id="captureImgBtn" onClick={handleCaptureBtn} title="capture image"
+                  aria-label="capture image"><i className="fas fa-camera"></i>
+                </button>
+                <button id="qrcodeBtn" onClick={handleCaptureBtn} title="Scan QR Code"
+                  aria-label="Scan QR Code"><i className="fas fa-qrcode"></i>
+                </button>
               </div>
-            )}
-            <div className={`cell optDiv ${isMedOpen ? 'toggleOptMenu' : ''}`}>
-              <button id="uploadImgBtn" onClick={handleUploadBtn} title="upload image" aria-label="upload image"><i
-                className="fas fa-image"></i></button>
-              <button id="captureImgBtn" onClick={handleCaptureBtn} title="capture image"
-                aria-label="capture image"><i className="fas fa-camera"></i></button>
-            </div>
 
-            <div className="cell">
-              <input type="file" id="galleryInput" ref={uploadImgBtnRef} onChange={onImageSelection} accept="image/*" hidden />
-              <input type="file" id="cameraInput" ref={captureImgBtnRef} onChange={onImageSelection} accept="image/*" capture="environment" hidden />
-            </div>
 
-            <div className="cell small-1 medium-1 large-1 align-center-middle text-center" style={{ marginRight: '25px' }}>
-              <button className="btnI" id="openMedOpts" onClick={toggleMedOpt} aria-label="Media options" aria-expanded="false"
-                title="Media options"><i className={isMedOpen ? 'fas fa-close' : 'fas fa-image'}></i></button>
-            </div>
+              <div className="">
+                <input type="file" id="galleryInput" ref={uploadImgBtnRef} onChange={onImageSelection} accept="image/*" hidden />
+                <input type="file" id="cameraInput" ref={captureImgBtnRef} onChange={onImageSelection} accept="image/*" capture="environment" hidden />
+              </div>
 
-            {!isRecording ? (
-              <div className="cell small-7 medium-7 large-7 align-center-middle text-center" id="userInputBox"
-                style={{ marginRight: '25px' }}>
-                <div className="chat-input-container">
-                  <textarea id="userInput" ref={userInputRef} onInput={onMsgInputChange} onKeyDown={onMsgInputKeydown} placeholder="Type a message..." rows="1"></textarea>
+              <div className='cell msgBtns'>
+                <div className=" small-1 medium-1 large-1 align-center-middle text-center" style={{ marginRight: '25px' }}>
+                  <button className={isMedOpen ? 'btnI rotate' : 'btnI rotate2'} id="openMedOpts" onClick={toggleMedOpt} aria-label="Media options" aria-expanded="false"
+                    title="More options"><i className={isMedOpen ? 'fas fa-close rotateIC' : 'fas fa-plus rotate'}></i></button>
+                </div>
+
+                <div className="inputsCont" id="userInputBox">
+                  {!isRecording ? (
+
+
+                    <div className="inputCont">
+                      <textarea id="userInput" ref={userInputRef} onInput={onMsgInputChange} onKeyDown={onMsgInputKeydown} placeholder="Type a message..." rows="1"></textarea>
+                    </div>
+
+                  ) : (
+                    <div id="recordIndicator" className="inputCont small-7 medium-7 large-7 align-center-middle text-center record-indicator">
+                      Listening...
+                    </div>
+                  )}
+                </div>
+
+                <div className=" small-2 medium-2 large-2 msg-rec align-center-middle text-left">
+                  <button
+                    className="btnI"
+                    id="sendMessageBtn"
+                    ref={sendBtnRef}
+                    onClick={onSendMessage}
+                    title="send message"
+                    aria-label="send message"
+                    disabled={!text}
+                  >
+                    <i className="fas fa-arrow-up"></i>
+                  </button>
+                  <span id="rcdSpan">
+
+                    {isRecording ? (
+                      <button className="btnI" onClick={stopRecording} title='Stop recording' aria-label='Stop recording'>
+                        <i className="fas fa-close"></i>
+                      </button>
+                    ) : (
+                      <button className="btnI" onClick={startRecording} title='Record audio' aria-label='Record audio'>
+                        <i className="fas fa-microphone"></i>
+                      </button>
+                    )}
+
+
+                  </span>
                 </div>
               </div>
-            ) : (
-              <div id="recordIndicator" className="cell small-7 medium-7 large-7 align-center-middle text-center record-indicator">
-                Listening...
-              </div>
-            )}
 
-            <div className="cell small-2 medium-2 large-2 msg-rec align-center-middle text-left">
-              <button
-                className="btnI"
-                id="sendMessageBtn"
-                ref={sendBtnRef}
-                onClick={onSendMessage}
-                title="send message"
-                aria-label="send message"
-                disabled={!text}
-              >
-                <i className="fas fa-arrow-up"></i>
-              </button>
-              <span id="rcdSpan">
-
-                {isRecording ? (
-                  <button className="btnI" onClick={stopRecording}>
-                    <i className="fas fa-close"></i>
-                  </button>
-                ) : (
-                  <button className="btnI" onClick={startRecording}>
-                    <i className="fas fa-microphone"></i>
-                  </button>
-                )}
-
-
-              </span>
             </div>
           </div>
 

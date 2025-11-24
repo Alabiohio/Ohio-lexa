@@ -9,6 +9,7 @@ import { showInfo } from '../assets/js/chat2';
 
 
 const Signup = () => {
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loadingEmail, setLoadingEmail] = useState(false);
@@ -24,12 +25,19 @@ const Signup = () => {
         const { error } = await supabase.auth.signUp({
             email,
             password,
+            options: {
+                data: {
+                    display_name: name // <-- store the name here
+                }
+            }
         })
 
         setLoadingEmail(false)
 
         if (error) {
-            setMessage(`❌ Signup failed: ${error.message}`)
+            if (error.message.includes("Failed to fetch")) {
+                setMessage("Something went wrong!")
+            }
         } else {
             setMessage('✅ Signup successful! Please check your email to confirm your account.')
             showInfo('Signup successful! Check your email to confirm your account.')
@@ -75,6 +83,18 @@ const Signup = () => {
 
                         <form onSubmit={handleSignup}>
                             <div style={styles.formGroup}>
+                                <label htmlFor="name">Name:</label>
+                                <input
+                                    type="text"
+                                    id="nameText"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    required
+                                    style={styles.input}
+                                />
+                            </div>
+
+                            <div style={styles.formGroup}>
                                 <label htmlFor="email">Email:</label>
                                 <input
                                     type="email"
@@ -98,7 +118,7 @@ const Signup = () => {
                                 />
                             </div>
                             {message && (
-                                <p style={{ color: message.includes('❌') ? 'red' : 'green' }}>
+                                <p style={{ color: message.includes('wrong') ? 'red' : 'green' }}>
                                     {message}
                                 </p>
                             )}
@@ -177,7 +197,7 @@ const styles = {
         marginTop: '15px',
     },
     loginLink: {
-        color: '#007bff',
+        color: '#00ff15ff',
         textDecoration: 'none',
         fontWeight: 'bold',
     },

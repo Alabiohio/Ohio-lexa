@@ -38,6 +38,7 @@ function trimHistory() {
     }
 }
 
+
 // Detect if web search is needed using AI
 async function shouldSearchWeb(input) {
     const decisionPrompt = `
@@ -123,6 +124,19 @@ async function decodeQRCodeFromBase64(base64) {
     });
 }
 
+
+
+let sWNeedsWeb = false;
+
+export function searchWeb(toggle) {
+    if (toggle) {
+        sWNeedsWeb = true;
+    } else {
+        sWNeedsWeb = false;
+    }
+    return sWNeedsWeb;
+}
+
 export async function sendMessage(
     pendingImage,
     setImagePreview,
@@ -202,11 +216,13 @@ export async function sendMessage(
             return true;
         });
 
-        // --- STEP 1: Ask AI if we need web search ---
+        const needsWebBtn = await searchWeb(sWNeedsWeb);
+
         const needsWeb = await shouldSearchWeb(queryText);
 
 
-        if (needsWeb) {
+        if (needsWeb || needsWebBtn) {
+
             removeTyping(typingId);
             appendMessage("bot", "🔍 Searching the web...", true);
 
@@ -335,11 +351,16 @@ ${context}
         console.error(error);
         removeTyping(typingId);
         appendMessage("bot", "⚠️ Message didn't send, please retry.");
+        return null;
+        // appendMessage("bot", `<button class='button' onclick="alert('hi')"><i class='fas fa-refresh retry'></i></button>`)
     } finally {
         pendingImage = null;
         setImagePreview(null);
     }
 }
+
+
+
 
 
 // Append message to chat
@@ -352,6 +373,15 @@ export function appendMessage(sender, text, isBot = false) {
     const contentDiv = document.createElement("div");
     contentDiv.className = "content";
     msgDiv.appendChild(contentDiv);
+
+    /*
+        if (text.startsWith("⚠️ Message didn't send, please retry.")) {
+            const retryCont = document.createElement("div");
+            retryCont.className = "retry";
+            retryCont.innerHTML = `<button class='retryBtn' onclick="resendMessage()"><i class='fas fa-refresh retry'></i>Retry</button>`;
+            msgDiv.appendChild(retryCont);
+        }
+    */
 
     // --- 1. Break response into segments (normal text vs fenced code)
     const segments = text.split(/```/);
@@ -422,6 +452,26 @@ export function appendMessage(sender, text, isBot = false) {
 
     //saveMessage();
 }
+
+/*
+window.resendMessage = async function () {
+    try {
+        const response = await fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ contents: conversationHistory }),
+        });
+
+        const data = await response.json();
+        let reply =
+            data.candidates?.[0]?.content?.parts?.[0]?.text || "⚠️ Error!";
+
+        appendMessage("bot", reply, true);
+
+    } catch {
+        showInfo("Couldn't send message")
+    }
+} */
 
 // Copy bot text
 window.copyText = function (btn) {
@@ -635,11 +685,21 @@ export function showInfo(message, onOk) {
     `;
     dialogOverlay.style.display = "flex";
 
-    dialogButtons.querySelector(".btn-ok").onclick = () => {
+
+    const okBtn = dialogButtons.querySelector(".btn-ok");
+    okBtn.onKeyDown = (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            dialogOverlay.style.display = "none";
+        }
+    }
+    okBtn.onclick = () => {
         dialogOverlay.style.display = "none";
         if (typeof onOk === "function") onOk();
     };
 }
+
+
 //showConfirm("Are you sure?", () => alert("Confirmed!"), () => alert("Cancelled"));
 
 

@@ -95,6 +95,9 @@ const ProfileSetup = () => {
 
         if (error) {
             setMessage(error.message)
+            if (error.message.includes("profiles_username_key")) {
+                setMessage("That username is unavailable, please use another.");
+            }
         } else {
             setMessage('Profile saved successfully! Redirecting...')
             setTimeout(() => navigate('/'), 1500)
@@ -123,7 +126,7 @@ const ProfileSetup = () => {
                     <div className='cell'>
 
                         {message && (
-                            <p style={{ color: message.includes('failed') || message.includes('required') ? 'red' : 'green' }}>
+                            <p style={{ color: message.includes('failed') || message.includes('required') ? 'red' : 'lime' }}>
                                 {message}
                             </p>
                         )}
