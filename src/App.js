@@ -17,6 +17,7 @@ import ProfileSetup from "./components/ProfileSetup";
 import About from "./components/About";
 import Terms from "./components/Terms";
 import Privacy from "./components/Privacy";
+import ResetPassword from './components/ResetPassword.jsx';
 import logoTr from './assets/images/logo-tr.png';
 import { handleImageSelection } from './utils/imageUtils.js';
 import { useSpeechRecognition } from './utils/voiceUtils.js';
@@ -470,6 +471,7 @@ function AppContent() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile-setup" element={<ProfileSetup />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
 
         <div

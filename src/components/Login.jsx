@@ -40,29 +40,30 @@ const Login = () => {
             return
         }
 
-        // Fetch user profile to check for username
-        const { data: profile, error: profileError } = await supabase
-            .from('profiles')
-            .select('username')
-            .eq('id', data.user.id)
-            .single()
+        /*        // Fetch user profile to check for username
+                const { data: profile, error: profileError } = await supabase
+                    .from('profiles')
+                    .select('username')
+                    .eq('id', data.user.id)
+                    .single()
+        
+                setLoadingEmail(false)
+        
+                if (profileError) {
+                    alert('Error loading profile. Try again.')
+                    return
+                }
+        */
+        setMessage('Login successful! Redirecting...');
+        navigate('/');
 
-        setLoadingEmail(false)
-
-        if (profileError) {
-            alert('Error loading profile. Try again.')
-            return
-        }
-
-        setMessage('Login successful! Redirecting...')
-
-        setTimeout(() => {
-            if (!profile || !profile.username) {
-                navigate('/profile-setup')
-            } else {
-                navigate('/')
-            }
-        }, 1500)
+        /*       setTimeout(() => {
+                   if (!profile || !profile.username) {
+                       navigate('/profile-setup')
+                   } else {
+                       navigate('/')
+                   }
+               }, 1500)*/
     }
 
     // Handle Google OAuth login
@@ -83,27 +84,52 @@ const Login = () => {
         }
     }
 
-    // Check for already logged-in user on mount
-    useEffect(() => {
-        const checkSession = async () => {
-            const { data: sessionData } = await supabase.auth.getSession()
-            const user = sessionData?.session?.user
-            if (user) {
-                const { data: profile } = await supabase
-                    .from('profiles')
-                    .select('username')
-                    .eq('id', user.id)
-                    .single()
+    /*  // Check for already logged-in user on mount
+      useEffect(() => {
+          const checkSession = async () => {
+              const { data: sessionData } = await supabase.auth.getSession()
+              const user = sessionData?.session?.user
+              if (user) {
+                  const { data: profile } = await supabase
+                      .from('profiles')
+                      .select('username')
+                      .eq('id', user.id)
+                      .single()
+  
+                  if (!profile || !profile.username) {
+                      navigate('/profile-setup')
+                  } else {
+                      navigate('/')
+                  }
+              }
+          }
+          checkSession()
+      }, [navigate])
+  */
 
-                if (!profile || !profile.username) {
-                    navigate('/profile-setup')
-                } else {
-                    navigate('/')
-                }
-            }
+
+    const handleForgotPassword = async () => {
+        if (!email.trim()) {
+            setMessage("Enter your email first.");
+            return;
         }
-        checkSession()
-    }, [navigate])
+
+        setLoadingEmail(true);
+        setMessage("");
+
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+            redirectTo: `${window.location.origin}/reset-password`,
+        });
+
+        setLoadingEmail(false);
+
+        if (error) {
+            setMessage("❌ " + error.message);
+        } else {
+            setMessage("✅ Password reset link sent! Check your inbox.");
+        }
+    };
+
 
     return (
 
@@ -159,6 +185,21 @@ const Login = () => {
                                     required
                                     style={styles.input}
                                 />
+                                <p
+                                    onClick={handleForgotPassword}
+                                    style={{
+                                        color: "#00c30fff",
+                                        textDecoration: "underline",
+                                        cursor: "pointer",
+                                        marginTop: "-5px",
+                                        marginBottom: "15px",
+                                        fontSize: "14px",
+                                        textAlign: "right"
+                                    }}
+                                >
+                                    Forgot password?
+                                </p>
+
                             </div>
 
                             <div className="cell text-center">
