@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { supabase } from './../supabaseClient'
 import { useNavigate, Link } from 'react-router-dom'
 import './../assets/css/signIn.css';
@@ -23,7 +23,7 @@ const Login = () => {
         setLoadingEmail(true)
         setMessage('')
 
-        const { data, error } = await supabase.auth.signInWithPassword({
+        const { error } = await supabase.auth.signInWithPassword({
             email: email.trim(),
             password: password.trim(),
         })
