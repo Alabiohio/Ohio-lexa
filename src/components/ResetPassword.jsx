@@ -8,6 +8,8 @@ const ResetPassword = () => {
     const [message, setMessage] = useState("");
     const navigate = useNavigate();
 
+    document.title = "Reset Password";
+
     const handleReset = async (e) => {
         e.preventDefault();
 

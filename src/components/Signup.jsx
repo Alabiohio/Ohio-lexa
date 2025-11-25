@@ -14,8 +14,10 @@ const Signup = () => {
     const [password, setPassword] = useState('')
     const [loadingEmail, setLoadingEmail] = useState(false);
     const [loadingGoogle, setLoadingGoogle] = useState(false);
-    const [message, setMessage] = useState('')
-    const navigate = useNavigate()
+    const [message, setMessage] = useState('');
+    const navigate = useNavigate();
+
+    document.title = "Sign up";
 
     const handleSignup = async (e) => {
         e.preventDefault()

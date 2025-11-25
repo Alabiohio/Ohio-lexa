@@ -15,7 +15,9 @@ const Login = () => {
     const [loadingGoogle, setLoadingGoogle] = useState(false);
     const [message, setMessage] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
+    document.title = "Login";
 
     // Handle normal email/password login
     const handleLogin = async (e) => {
