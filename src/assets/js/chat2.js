@@ -360,6 +360,15 @@ ${context}
 }
 
 
+function scrollToBottom() {
+    const chatContainer = document.getElementById("chat-box");
+    if (!chatContainer) return;
+
+    chatContainer.scrollTo({
+        top: chatContainer.scrollHeight,
+        behavior: "smooth"
+    });
+}
 
 
 
@@ -373,6 +382,8 @@ export function appendMessage(sender, text, isBot = false) {
     const contentDiv = document.createElement("div");
     contentDiv.className = "content";
     msgDiv.appendChild(contentDiv);
+    scrollToBottom();
+
 
     /*
         if (text.startsWith("⚠️ Message didn't send, please retry.")) {

@@ -3,6 +3,7 @@
  */
 import Footer from './Footer';
 function Terms() {
+    document.title = "Terms of Service";
     return (
         <div className="tos-content main">
             <section>

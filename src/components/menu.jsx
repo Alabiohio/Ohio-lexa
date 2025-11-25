@@ -31,11 +31,32 @@ function Menu() {
 
     }, []);
 
+    const originalTitle = useRef(document.title);
 
     const toggleMenu = () => setIsOpen((prev) => !prev);
     const closeMenu = () => setIsOpen(false);
     const toggleProfileSec = () => setIsProfileOpen((prev) => !prev);
+
+    useEffect(() => {
+        if (isProfileOpen) {
+            // Save the current page title only the FIRST time the profile opens
+            if (!originalTitle.current) {
+                originalTitle.current = document.title;
+            }
+            document.title = "Profile";
+        } else {
+            // Restore original page title
+            if (originalTitle.current) {
+                document.title = originalTitle.current;
+                originalTitle.current = null; // Reset for next time
+            }
+        }
+    }, [isProfileOpen]);
+
+
+
     const closeProfile = () => setIsProfileOpen(false);
+
 
     // Close menu when clicking outside
     useEffect(() => {
@@ -133,12 +154,6 @@ function Menu() {
                                 </button>
                             </li>
                         )}
-                        <li>
-                            <i className="fas fa-info-circle"></i>
-                            <NavLink to="/about" className={({ isActive }) => (isActive ? 'active' : '')} onClick={closeMenu}>
-                                About
-                            </NavLink>
-                        </li>
                         <li>
                             <i className="fas fa-scale-balanced"></i>
                             <NavLink to="/terms" className={({ isActive }) => (isActive ? 'active' : '')} onClick={closeMenu}>
@@ -430,8 +445,6 @@ function ProfileDialog({ show, onClose }) {
             setSaving(false);
         }
     };
-
-
 
 
     return (

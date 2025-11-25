@@ -1,5 +1,8 @@
 import Footer from './Footer';
 const Privacy = () => {
+
+    document.title = "Privacy Policy";
+
     return (
         <div className="grid-container privacy-section main">
             <div className="grid-x grid-margin-x align-center">

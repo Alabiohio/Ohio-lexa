@@ -14,10 +14,10 @@ import Menu from "./components/menu";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import ProfileSetup from "./components/ProfileSetup";
-import About from "./components/About";
 import Terms from "./components/Terms";
 import Privacy from "./components/Privacy";
 import ResetPassword from './components/ResetPassword.jsx';
+import NotFound from './components/NotFound.jsx';
 import logoTr from './assets/images/logo-tr.png';
 import { handleImageSelection } from './utils/imageUtils.js';
 import { useSpeechRecognition } from './utils/voiceUtils.js';
@@ -78,6 +78,8 @@ function Home() {
 
   const chatboxRef = useRef(null);
   chatContainer = chatboxRef.current;
+
+  document.title = "Lexa";
 
   useEffect(() => {
     // Initial check
@@ -465,13 +467,13 @@ function AppContent() {
       <main className="grid-container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile-setup" element={<ProfileSetup />} />
           <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
 
         <div
