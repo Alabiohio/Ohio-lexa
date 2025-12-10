@@ -13,7 +13,7 @@ const { marked } = require('marked');
 
 
 const API_KEY = process.env.REACT_APP_GEMINI_API_KEY;
-const model = "gemini-2.5-flash";
+const model = "gemini-2.5-flash-lite";
 export const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=` + API_KEY;
 const inputBox = document.getElementById("userInputBox");
 const recordSpan = document.getElementById("rcdSpan");
@@ -294,7 +294,7 @@ ${context}
 
         const data = await response.json();
         let reply =
-            data.candidates?.[0]?.content?.parts?.[0]?.text || "⚠️ Error!";
+            data.candidates?.[0]?.content?.parts?.[0]?.text || "⚠️ Lexa will ba back shortly, Please retry later";
 
         // --- STEP 3: Retry via web if reply looks incomplete ---
         if (looksIncomplete(reply) || reply.trim() === "") {
