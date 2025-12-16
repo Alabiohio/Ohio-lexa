@@ -294,7 +294,7 @@ ${context}
 
         const data = await response.json();
         let reply =
-            data.candidates?.[0]?.content?.parts?.[0]?.text || "⚠️ Lexa will ba back shortly, Please retry later";
+            data.candidates?.[0]?.content?.parts?.[0]?.text || "⚠️ Lexa will be back shortly, Please retry later";
 
         // --- STEP 3: Retry via web if reply looks incomplete ---
         if (looksIncomplete(reply) || reply.trim() === "") {
